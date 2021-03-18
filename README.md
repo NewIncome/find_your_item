@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Links
+[GitHub Repo](https://github.com/NewIncome/find_your_item)
+[:globe_with_meridians::computer: Heroku Livelink](https://find-your-item.herokuapp.com/ )
+
+
 ## Available Scripts
 
 In the project directory, you can run:
