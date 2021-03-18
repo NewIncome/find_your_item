@@ -4,7 +4,7 @@ import './index.scss';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import Routes from './containers/Routes';
+import App from './App';
 import rootReducer from './reducers';
 
 const store = createStore(
@@ -15,7 +15,7 @@ const store = createStore(
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Routes />
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

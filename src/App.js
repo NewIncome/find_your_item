@@ -1,14 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import 'react';
+import Routes from './containers/Routes';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <div className="App">
+    <Navbar />
+    <Routes />
+    <Footer />
+  </div>
+);
 
 export default App;
