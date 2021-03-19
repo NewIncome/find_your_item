@@ -11,11 +11,11 @@ const Routes = () => (
   <BrowserRouter>
     <Navbar />
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/user" component={UserInfo} />
-      <Route path="/items" component={Items} />
-      <Route path="/item/:id" component={Item} />
-      <Route path="/fav_list" component={FavList} />
+      <Route exact path="/" render={() => (<Home />)} />
+      <Route path="/user" render={() => (<UserInfo />)} />
+      <Route path="/items" render={() => (<Items />)} />
+      <Route path="/item/:id" render={() => (<Item />)} />
+      <Route path="/fav_list" render={() => (<FavList />)} />
     </Switch>
   </BrowserRouter>
 );
