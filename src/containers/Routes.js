@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './Home';
-import User from './User';
+import UserInfo from './UserInfo';
 import Items from './Items';
 import FavList from './FavList';
 import Item from '../components/Item';
@@ -12,7 +12,7 @@ const Routes = () => (
     <Navbar />
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/user" component={User} />
+      <Route path="/user" component={UserInfo} />
       <Route path="/items" component={Items} />
       <Route path="/item/:id" component={Item} />
       <Route path="/fav_list" component={FavList} />
