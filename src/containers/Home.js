@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Home = () => (
-  <section className="Home">
+  <section className="section" id="Home">
     <h2>Find Your Item</h2>
     <form>
       <input placeholder="Please input your User Name" />

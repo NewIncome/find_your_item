@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.App {
+  min-height: 85vh;
+  border: 1px solid #ccc;
+}
+
+.Navbar {
+  background: linear-gradient(#eee,#ccc,#eee);
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+}
+
+.section {
+  padding-top: 100px;
+
+  h2 { padding-bottom: 30px; }
+}
