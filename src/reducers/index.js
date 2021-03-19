@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import setUser from './user';
-import getUsername from './username';
+import addUsernameReducer from './username';
 
 export default combineReducers({
-  username: getUsername,
+  username: addUsernameReducer,
   user: setUser,
 });

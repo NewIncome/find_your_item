@@ -1,22 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-// import UserInfo from './UserInfo';
+import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { addUsername } from '../actions';
 
-const Home = () => {
-  const [inputName, setInputName] = useState('');
+const Home = props => {
+  const { username, addUsername } = props;
+  const history = useHistory();
+  // const flag = 'ok';
 
-  const onInput = event => setInputName(event.target.value);
+  const onInput = event => addUsername(event.target.value);
 
-  const onSubmit = event => event.preventDefault();
+  const onSubmit = event => {
+    event.preventDefault();
+
+    // if (username === '') {
+
+    // } else if (username.length < 4) {
+
+    // } else return
+
+    history.push('/user');
+  };
 
   return (
     <section className="section" id="Home">
       <h2>Find Your Item</h2>
-      <form action="/user">
+      <form>
         <input
           placeholder="Please input your User Name"
-          value={inputName}
+          value={username}
           onChange={onInput}
         />
         <button
@@ -25,10 +38,20 @@ const Home = () => {
         >
           Enter
         </button>
-        <Link to="/user">Go To User</Link>
       </form>
     </section>
   );
 };
+
+Home.propTypes = {
+  username: PropTypes.string.isRequired,
+  addUsername: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = username => username;
+
+const mapDispatchToProps = dispatch => ({
+  addUsername: username => dispatch(addUsername(username)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

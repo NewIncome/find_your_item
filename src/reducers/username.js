@@ -1,4 +1,4 @@
-const getUsername = (status = '', action) => {
+const addUsernameReducer = (state = '', action) => {
   switch (action.type) {
     case 'SET_NAME':
       return action.username;
@@ -7,4 +7,4 @@ const getUsername = (status = '', action) => {
   }
 };
 
-export default getUsername;
+export default addUsernameReducer;
