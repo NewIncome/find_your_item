@@ -1,3 +1,8 @@
+const addUsername = username => ({
+  type: 'SET_NAME',
+  username,
+});
+
 const newUser = user => ({
   type: 'NEW_USER',
   user,
@@ -8,4 +13,4 @@ const logUser = user => ({
   user,
 });
 
-export { newUser, logUser };
+export { addUsername, newUser, logUser };

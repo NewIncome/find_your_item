@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 // import UserInfo from './UserInfo';
 
 const Home = () => {
@@ -7,23 +8,19 @@ const Home = () => {
 
   const onInput = event => setInputName(event.target.value);
 
-  const onSubmit = event => {
-    event.preventDefault();
-
-    <Redirect to="/user" name={inputName} />
-  };
+  const onSubmit = event => event.preventDefault();
 
   return (
     <section className="section" id="Home">
       <h2>Find Your Item</h2>
-      <form action="/users">
+      <form action="/user">
         <input
           placeholder="Please input your User Name"
           value={inputName}
           onChange={onInput}
         />
         <button
-          type="button"
+          type="submit"
           onClick={onSubmit}
         >
           Enter
@@ -34,4 +31,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
