@@ -1,31 +1,40 @@
-const setUser = (state = '', action) => {
+const setUserReducer = (state = '', action) => {
   let userObject;
   switch (action.type) {
     case 'NEW_USER':
       fetch(
         'https://findmyitem-api.herokuapp.com/users',
         {
-          method: 'GET',
-          body: JSON.stringify({ name: action.name }),
+          method: 'POST',
+          body: JSON.stringify({ name: action.username }),
         },
       )
-        .then(resp => resp.json())
-        .then(parsedResp => { userObject = parsedResp; });
-      return userObject;
+        .then(parsedResp => {
+          userObject = parsedResp;
+          console.log('UserObject');
+          console.log(userObject);
+        });
+      return userObject || state;
     case 'LOG_USER':
       fetch(
         'https://findmyitem-api.herokuapp.com/login',
         {
           method: 'POST',
-          body: JSON.stringify({ name: action.name }),
+          header: { 'Content-type': 'application/json' },
+          body: JSON.stringify({ name: action.username }),
         },
       )
-        .then(resp => resp.json())
-        .then(parsedResp => { userObject = parsedResp; });
-      return userObject;
+        // .then(resp => resp.json())
+        .then(parsedResp => {
+          userObject = parsedResp;
+          console.log('UserObject');
+          console.log(userObject);
+          console.log(JSON.stringify({ name: action.username }));
+        });
+      return userObject || state;
     default:
       return state;
   }
 };
 
-export default setUser;
+export default setUserReducer;

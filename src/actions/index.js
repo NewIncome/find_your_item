@@ -3,14 +3,16 @@ const addUsername = username => ({
   username,
 });
 
-const newUser = user => ({
+const newUser = (user, username) => ({
   type: 'NEW_USER',
   user,
+  username,
 });
 
-const logUser = user => ({
+const logUser = (username, user) => ({
   type: 'LOG_USER',
   user,
+  username,
 });
 
 export { addUsername, newUser, logUser };
