@@ -11,8 +11,8 @@ const setUserReducer = (state = '', action) => {
       )
         .then(parsedResp => {
           userObject = parsedResp;
-          console.log('UserObject');
-          console.log(userObject);
+          // console.log('UserObject');
+          // console.log(userObject);
         });
       return userObject || state;
     case 'LOG_USER':
@@ -27,9 +27,9 @@ const setUserReducer = (state = '', action) => {
         // .then(resp => resp.json())
         .then(parsedResp => {
           userObject = parsedResp;
-          console.log('UserObject');
-          console.log(userObject);
-          console.log(JSON.stringify({ name: action.username }));
+          // console.log('UserObject');
+          // console.log(userObject);
+          // console.log(JSON.stringify({ name: action.username }));
         });
       return userObject || state;
     default:
