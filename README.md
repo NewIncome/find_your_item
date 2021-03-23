@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Links
 - [GitHub Repo](https://github.com/NewIncome/find_your_item)
-- [:globe_with_meridians::computer: Heroku Livelink](https://find-your-item.herokuapp.com/ )
+- [:globe_with_meridians::computer: Netlify Livelink](https://find-my-item.netlify.app/)
 
 ## API fetch-my-item Links
 - [API GitHub Repo](https://github.com/NewIncome/find-my-item-api)
