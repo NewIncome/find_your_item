@@ -1,35 +1,36 @@
+import axios from 'axios';
+
 const setUserReducer = (state = '', action) => {
   let userObject;
   switch (action.type) {
     case 'NEW_USER':
-      fetch(
+      axios.post(
         'https://findmyitem-api.herokuapp.com/users',
-        {
-          method: 'POST',
-          body: JSON.stringify({ name: action.username }),
-        },
+        { name: action.username },
       )
         .then(parsedResp => {
           userObject = parsedResp;
-          // console.log('UserObject');
-          // console.log(userObject);
+          console.log('UserObject');
+          console.log(userObject);
         });
       return userObject || state;
     case 'LOG_USER':
-      fetch(
+      axios.post(
         'https://findmyitem-api.herokuapp.com/login',
-        {
-          method: 'POST',
-          header: { 'Content-type': 'application/json' },
-          body: JSON.stringify({ name: action.username }),
-        },
+        { name: action.username },
       )
-        // .then(resp => resp.json())
         .then(parsedResp => {
           userObject = parsedResp;
-          // console.log('UserObject');
-          // console.log(userObject);
-          // console.log(JSON.stringify({ name: action.username }));
+          console.log('UserObject');
+          console.log(userObject);
+        })
+        .catch(err => {
+          console.log('Error');
+          console.log(err);
+          console.log(typeof err);
+          console.log(Object.keys(err));
+          userObject = err.response;
+          console.log(err.response);
         });
       return userObject || state;
     default:
