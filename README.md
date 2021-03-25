@@ -3,9 +3,12 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Links
-[GitHub Repo](https://github.com/NewIncome/find_your_item)
+- [GitHub Repo](https://github.com/NewIncome/find_your_item)
+- [:globe_with_meridians::computer: Heroku Livelink](https://find-your-item.herokuapp.com/ )
 
-[:globe_with_meridians::computer: Heroku Livelink](https://find-your-item.herokuapp.com/ )
+## API fetch-my-item Links
+- [API GitHub Repo](https://github.com/NewIncome/find-my-item-api)
+- [API Live Version](https://findmyitem-api.herokuapp.com)
 
 
 ## Available Scripts
