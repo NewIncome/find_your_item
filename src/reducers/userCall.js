@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const setUserCallReducer = (state = '', action) => {
+const setUserCallReducer = (state = Promise, action) => {
   let userObject;
   switch (action.type) {
     case 'NEW_USER_CALL':

@@ -15,7 +15,7 @@ const logUserCall = (username, userCall) => ({
   username,
 });
 
-const setUserInfo = user ({
+const setUserInfo = user => ({
   type: 'SET_USER',
   user,
 });

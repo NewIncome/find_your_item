@@ -2,15 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { addUsername, newUser, logUser } from '../actions';
+import { addUsername, newUserCall, logUserCall } from '../actions';
 
 const Home = props => {
   const {
     username,
     addUsername,
-    user,
-    newUser,
-    logUser,
+    userCall,
+    newUserCall,
+    logUserCall,
   } = props;
   const history = useHistory();
 
@@ -21,15 +21,14 @@ const Home = props => {
     // if (username === '') {
     // } else if (username.length < 4) {
     // } else return
-    newUser(username);
+    newUserCall(username);
     history.push('/user');
   };
 
   const onLogSubmit = event => {
     event.preventDefault();
-    logUser(username);
-    if user
-    
+    logUserCall(username);
+    console.log(userCall);
 
     history.push('/user');
   };
@@ -57,17 +56,22 @@ const Home = props => {
 Home.propTypes = {
   username: PropTypes.string.isRequired,
   addUsername: PropTypes.func.isRequired,
-  user: PropTypes.objectOf(PropTypes.any).isRequired,
-  newUser: PropTypes.func.isRequired,
-  logUser: PropTypes.func.isRequired,
+  // userCall: PropTypes.objectOf(PropTypes.any).isRequired,
+  // userCall: PropTypes.shape({
+  //   then: PropTypes.func.isRequired,
+  //   catch: PropTypes.func.isRequired,
+  // }).isRequired,
+  userCall: PropTypes.func.isRequired,
+  newUserCall: PropTypes.func.isRequired,
+  logUserCall: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ username, user }) => ({ username, user });
+const mapStateToProps = ({ username, userCall }) => ({ username, userCall });
 
 const mapDispatchToProps = dispatch => ({
   addUsername: username => dispatch(addUsername(username)),
-  newUser: (user, username) => dispatch(newUser(user, username)),
-  logUser: (username, user) => dispatch(logUser(username, user)),
+  newUserCall: (username, userCall) => dispatch(newUserCall(username, userCall)),
+  logUserCall: (username, userCall) => dispatch(logUserCall(username, userCall)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
