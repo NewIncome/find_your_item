@@ -3,16 +3,26 @@ const addUsername = username => ({
   username,
 });
 
-const newUser = (user, username) => ({
-  type: 'NEW_USER',
-  user,
+const newUserCall = (userCall, username) => ({
+  type: 'NEW_USER_CALL',
+  userCall,
   username,
 });
 
-const logUser = (username, user) => ({
-  type: 'LOG_USER',
-  user,
+const logUserCall = (username, userCall) => ({
+  type: 'LOG_USER_CALL',
+  userCall,
   username,
 });
 
-export { addUsername, newUser, logUser };
+const setUserInfo = user ({
+  type: 'SET_USER',
+  user,
+});
+
+export {
+  addUsername,
+  newUserCall,
+  logUserCall,
+  setUserInfo,
+};

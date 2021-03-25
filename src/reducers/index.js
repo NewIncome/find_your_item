@@ -4,5 +4,6 @@ import addUsernameReducer from './username';
 
 export default combineReducers({
   username: addUsernameReducer,
+  userCall: setUserCallReducer,
   user: setUserReducer,
 });

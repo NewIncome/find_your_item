@@ -8,6 +8,7 @@ const Home = props => {
   const {
     username,
     addUsername,
+    user,
     newUser,
     logUser,
   } = props;
@@ -27,6 +28,9 @@ const Home = props => {
   const onLogSubmit = event => {
     event.preventDefault();
     logUser(username);
+    if user
+    
+
     history.push('/user');
   };
 
@@ -53,11 +57,12 @@ const Home = props => {
 Home.propTypes = {
   username: PropTypes.string.isRequired,
   addUsername: PropTypes.func.isRequired,
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
   newUser: PropTypes.func.isRequired,
   logUser: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = username => username;
+const mapStateToProps = ({ username, user }) => ({ username, user });
 
 const mapDispatchToProps = dispatch => ({
   addUsername: username => dispatch(addUsername(username)),
