@@ -1,38 +1,20 @@
 import axios from 'axios';
 
-const setUserCallReducer = (state = Promise, action) => {
-  let userObject;
+const setUserCallReducer = (state = '', action) => {
+  let apiCall;
+  console.log('in setUserCallReducer');
   switch (action.type) {
     case 'NEW_USER_CALL':
-      axios.post(
+      apiCall = new Promise(axios.post(
         'https://findmyitem-api.herokuapp.com/users',
         { name: action.username },
-      )
-        .then(parsedResp => {
-          userObject = parsedResp;
-          console.log('UserObject');
-          console.log(userObject);
-        });
-      return userObject || state;
+      ));
+      return apiCall;
     case 'LOG_USER_CALL':
-      axios.post(
+      return axios.post(
         'https://findmyitem-api.herokuapp.com/login',
         { name: action.username },
-      )
-        .then(parsedResp => {
-          userObject = parsedResp;
-          console.log('UserObject');
-          console.log(userObject);
-        })
-        .catch(err => {
-          console.log('Error');
-          console.log(err);
-          console.log(typeof err);
-          console.log(Object.keys(err));
-          userObject = err.response;
-          console.log(err.response);
-        });
-      return userObject || state;
+      );
     default:
       return state;
   }

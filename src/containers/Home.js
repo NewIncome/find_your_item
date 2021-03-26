@@ -1,8 +1,14 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { addUsername, newUserCall, logUserCall } from '../actions';
+import {
+  addUsername,
+  newUserCall,
+  logUserCall,
+  setUserInfo,
+} from '../actions';
 
 const Home = props => {
   const {
@@ -11,27 +17,44 @@ const Home = props => {
     userCall,
     newUserCall,
     logUserCall,
+    user,
+    setUserInfo,
   } = props;
   const history = useHistory();
+  const [aPIcall, setAPIcall] = useState('');
+  // let newOrLog = '';
 
   const onInput = event => addUsername(event.target.value);
 
   const onNewSubmit = event => {
     event.preventDefault();
-    // if (username === '') {
-    // } else if (username.length < 4) {
-    // } else return
+    // newOrLog = 'NEW';
     newUserCall(username);
-    history.push('/user');
+    setAPIcall(userCall);
   };
 
   const onLogSubmit = event => {
     event.preventDefault();
+    // newOrLog = 'LOG';
     logUserCall(username);
-    console.log(userCall);
-
-    history.push('/user');
+    setAPIcall(userCall);
   };
+
+  useEffect(() => {
+    console.log('userCall');
+    console.log(userCall);
+    console.log(typeof userCall);
+    console.log('aPIcall');
+    console.log(aPIcall);
+
+    if (aPIcall !== '') {
+      userCall.then(resp => {
+        setUserInfo(resp);
+        setAPIcall('');
+        history.push('/user');
+      });
+    }
+  }, [userCall, aPIcall, user]);
 
   return (
     <section className="section" id="Home">
@@ -53,10 +76,13 @@ const Home = props => {
   );
 };
 
+Home.defaultProps = {
+  user: {},
+};
+
 Home.propTypes = {
   username: PropTypes.string.isRequired,
   addUsername: PropTypes.func.isRequired,
-  // userCall: PropTypes.objectOf(PropTypes.any).isRequired,
   // userCall: PropTypes.shape({
   //   then: PropTypes.func.isRequired,
   //   catch: PropTypes.func.isRequired,
@@ -64,14 +90,17 @@ Home.propTypes = {
   userCall: PropTypes.func.isRequired,
   newUserCall: PropTypes.func.isRequired,
   logUserCall: PropTypes.func.isRequired,
+  user: PropTypes.objectOf(PropTypes.any),
+  setUserInfo: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ username, userCall }) => ({ username, userCall });
+const mapStateToProps = ({ username, userCall, user }) => ({ username, userCall, user });
 
 const mapDispatchToProps = dispatch => ({
   addUsername: username => dispatch(addUsername(username)),
   newUserCall: (username, userCall) => dispatch(newUserCall(username, userCall)),
   logUserCall: (username, userCall) => dispatch(logUserCall(username, userCall)),
+  setUserInfo: user => dispatch(setUserInfo(user)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
