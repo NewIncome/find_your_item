@@ -20,9 +20,56 @@ const setUserInfo = user => ({
   user,
 });
 
+const getItemsCall = (itemsCall, userId) => ({
+  type: 'GET_ITEMS',
+  itemsCall,
+  userId,
+});
+
+const setItems = items => ({
+  type: 'SET_ITEMS',
+  items,
+});
+
+const getItemCall = (itemCall, itemId) => ({
+  type: 'GET_ITEM',
+  itemId,
+  itemCall,
+});
+
+const setItem = item => ({
+  type: 'SET_ITEM',
+  item,
+});
+
+const newItemCall = (newItemCall, itemId) => ({
+  type: 'NEW_ITEM_CALL',
+  newItemCall,
+  itemId,
+});
+
+const updateItemCall = (updateItemCall, itemId) => ({
+  type: 'NEW_ITEM_CALL',
+  updateItemCall,
+  itemId,
+});
+
+const removeItemCall = (removeItemCall, itemId) => ({
+  type: 'REMOVE_ITEM_CALL',
+  removeItemCall,
+  itemId,
+});
+
 export {
   addUsername,
   newUserCall,
   logUserCall,
   setUserInfo,
+  getItemsCall,
+  setItems,
+  getItemCall,
+  setItem,
+  newItemCall,
+  updateItemCall,
+  removeItemCall,
 };

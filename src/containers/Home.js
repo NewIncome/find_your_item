@@ -33,12 +33,32 @@ const Home = props => {
     setAPIcall(userCall);
   };
 
-  const onLogSubmit = event => {
+  const onLogSubmit = async event => {
     event.preventDefault();
     // newOrLog = 'LOG';
+    let v;
     logUserCall(username);
-    setAPIcall(userCall);
+    try {
+      v = await userCall;
+      setAPIcall(userCall);
+    } catch (e) {
+      v = await e;
+    }
+    // await userCall.then(resp => {
+    //   console.log('API RESPONSE');
+    //   console.log(resp);
+    //   setUserInfo(resp.data);
+    // });
   };
+
+  // async function getUser() {
+  //   let v;
+  //   try {
+  //     v = await userCall;
+  //   } catch(e) {
+  //     v = await e;
+  //   }
+  // }
 
   useEffect(() => {
     console.log('userCall');
@@ -48,13 +68,8 @@ const Home = props => {
     console.log(aPIcall);
 
     if (aPIcall !== '') {
-      userCall.then(resp => {
-        console.log('API RESPONSE');
-        console.log(resp);
-        setUserInfo(resp.data);
-        setAPIcall('');
-        history.push('/user');
-      });
+      setAPIcall('');
+      history.push('/user');
     }
   }, [userCall, aPIcall, user]);
 
