@@ -6,6 +6,10 @@ import PropTypes from 'prop-types';
 const UserInfo = props => {
   const { username, user } = props;
 
+  console.log('User');
+  console.log(user);
+  console.log(username);
+
   return (
     <section className="section" id="User">
       <h2>

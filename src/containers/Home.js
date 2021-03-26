@@ -49,7 +49,9 @@ const Home = props => {
 
     if (aPIcall !== '') {
       userCall.then(resp => {
-        setUserInfo(resp);
+        console.log('API RESPONSE');
+        console.log(resp);
+        setUserInfo(resp.data);
         setAPIcall('');
         history.push('/user');
       });
