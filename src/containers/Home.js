@@ -22,7 +22,6 @@ const Home = props => {
   } = props;
   const history = useHistory();
   const [aPIcall, setAPIcall] = useState('');
-  // let newOrLog = '';
 
   const onInput = event => addUsername(event.target.value);
 
@@ -38,43 +37,14 @@ const Home = props => {
     setAPIcall(userCall);
   };
 
-  // const makeAPIcall = async () => {
-  //   let call;
-  //   if (aPIcall === 'new') {
-  //     try {
-  //       call = axios.post(
-  //         'https://findmyitem-api.herokuapp.com/users',
-  //         { name: username },
-  //       );
-  //     } catch (e) {
-  //       call = e;
-  //     }
-  //   } else {
-  //     try {
-  //       call = axios.post(
-  //         'https://findmyitem-api.herokuapp.com/users',
-  //         { name: username },
-  //       );
-  //     } catch (e) {
-  //       call = e;
-  //     }
-  //   }
-  // };
-
   useEffect(() => {
     if (aPIcall !== '') {
-      console.log('API Call Status');
-      console.log(aPIcall);
-      console.log('User API Call Status');
-      console.log(userCall);
+
       let v = {};
       aPIcall.then(resp => {
         v = resp;
-        console.log('resp.data');
-        console.log(v);
-        console.log('USERRR');
+
         setUserInfo(v.data);
-        console.log(user);
       });
       if (v.data === user) {
         setAPIcall('');
@@ -110,10 +80,6 @@ Home.defaultProps = {
 Home.propTypes = {
   username: PropTypes.string.isRequired,
   addUsername: PropTypes.func.isRequired,
-  // userCall: PropTypes.shape({
-  //   then: PropTypes.func.isRequired,
-  //   catch: PropTypes.func.isRequired,
-  // }).isRequired,
   userCall: PropTypes.func.isRequired,
   newUserCall: PropTypes.func.isRequired,
   logUserCall: PropTypes.func.isRequired,
