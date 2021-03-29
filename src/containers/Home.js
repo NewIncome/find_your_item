@@ -39,7 +39,6 @@ const Home = props => {
 
   useEffect(() => {
     if (aPIcall !== '') {
-
       let v = {};
       aPIcall.then(resp => {
         v = resp;
