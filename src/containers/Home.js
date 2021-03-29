@@ -28,50 +28,60 @@ const Home = props => {
 
   const onNewSubmit = event => {
     event.preventDefault();
-    // newOrLog = 'NEW';
     newUserCall(username);
     setAPIcall(userCall);
   };
 
   const onLogSubmit = async event => {
     event.preventDefault();
-    // newOrLog = 'LOG';
-    let v;
     logUserCall(username);
-    try {
-      v = await userCall;
-      setAPIcall(userCall);
-    } catch (e) {
-      v = await e;
-    }
-    // await userCall.then(resp => {
-    //   console.log('API RESPONSE');
-    //   console.log(resp);
-    //   setUserInfo(resp.data);
-    // });
+    setAPIcall(userCall);
   };
 
-  // async function getUser() {
-  //   let v;
-  //   try {
-  //     v = await userCall;
-  //   } catch(e) {
-  //     v = await e;
+  // const makeAPIcall = async () => {
+  //   let call;
+  //   if (aPIcall === 'new') {
+  //     try {
+  //       call = axios.post(
+  //         'https://findmyitem-api.herokuapp.com/users',
+  //         { name: username },
+  //       );
+  //     } catch (e) {
+  //       call = e;
+  //     }
+  //   } else {
+  //     try {
+  //       call = axios.post(
+  //         'https://findmyitem-api.herokuapp.com/users',
+  //         { name: username },
+  //       );
+  //     } catch (e) {
+  //       call = e;
+  //     }
   //   }
-  // }
+  // };
 
   useEffect(() => {
-    console.log('userCall');
-    console.log(userCall);
-    console.log(typeof userCall);
-    console.log('aPIcall');
-    console.log(aPIcall);
-
     if (aPIcall !== '') {
-      setAPIcall('');
-      history.push('/user');
+      console.log('API Call Status');
+      console.log(aPIcall);
+      console.log('User API Call Status');
+      console.log(userCall);
+      let v = {};
+      aPIcall.then(resp => {
+        v = resp;
+        console.log('resp.data');
+        console.log(v);
+        console.log('USERRR');
+        setUserInfo(v.data);
+        console.log(user);
+      });
+      if (v.data === user) {
+        setAPIcall('');
+        history.push('/user');
+      }
     }
-  }, [userCall, aPIcall, user]);
+  }, [aPIcall]);
 
   return (
     <section className="section" id="Home">
