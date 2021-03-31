@@ -17,7 +17,6 @@ const Home = props => {
     userCall,
     newUserCall,
     logUserCall,
-    user,
     setUserInfo,
   } = props;
   const history = useHistory();
@@ -38,22 +37,12 @@ const Home = props => {
   };
 
   useEffect(() => {
-    console.log('THE aPI call');
-    console.log(aPIcall);
-    console.log(userCall);
     if (aPIcall !== '') {
       let v;
       userCall.then(resp => {
         v = resp;
-        console.log('aPI call RESPONSE');
-        console.log(v);
 
         setUserInfo(v.data);
-
-        console.log('response v.DATA');
-        console.log(v.data);
-        console.log('User in HOME');
-        console.log(user);
 
         setAPIcall('');
         history.push('/user');
@@ -81,22 +70,16 @@ const Home = props => {
   );
 };
 
-Home.defaultProps = {
-  user: {},
-};
-
 Home.propTypes = {
   username: PropTypes.string.isRequired,
   addUsername: PropTypes.func.isRequired,
-  // userCall: PropTypes.func.isRequired,
   userCall: PropTypes.objectOf(PropTypes.any).isRequired,
   newUserCall: PropTypes.func.isRequired,
   logUserCall: PropTypes.func.isRequired,
-  user: PropTypes.objectOf(PropTypes.any),
   setUserInfo: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ username, userCall, user }) => ({ username, userCall, user });
+const mapStateToProps = ({ username, userCall }) => ({ username, userCall });
 
 const mapDispatchToProps = dispatch => ({
   addUsername: username => dispatch(addUsername(username)),

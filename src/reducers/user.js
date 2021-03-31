@@ -8,8 +8,6 @@ const dummyUser = {
 const setUserReducer = (state = dummyUser, action) => {
   switch (action.type) {
     case 'SET_USER':
-      console.log('In setUserREDUCER');
-      console.log(action);
       return action.user;
     default:
       return state;

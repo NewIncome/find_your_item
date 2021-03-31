@@ -4,15 +4,12 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const UserInfo = props => {
-  const { username, user } = props;
-
-  console.log('User in UserINFO');
-  console.log(user);
+  const { user } = props;
 
   return (
     <section className="section" id="User">
       <h2>
-        {username}
+        {user.name}
         , Info
       </h2>
       <ul>
@@ -34,10 +31,9 @@ const UserInfo = props => {
 };
 
 UserInfo.propTypes = {
-  username: PropTypes.string.isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-const mapStateToProps = ({ username, user }) => ({ username, user });
+const mapStateToProps = user => user;
 
 export default connect(mapStateToProps)(UserInfo);
