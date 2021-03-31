@@ -6,6 +6,9 @@ import PropTypes from 'prop-types';
 const UserInfo = props => {
   const { username, user } = props;
 
+  console.log('User in UserINFO');
+  console.log(user);
+
   return (
     <section className="section" id="User">
       <h2>
@@ -14,11 +17,11 @@ const UserInfo = props => {
       </h2>
       <ul>
         {
-          user ? user.data.map(info => (
-            <li key={info}>
-              {info}
+          user ? Object.keys(user).map(key => (
+            <li key={key}>
+              {key}
               :
-              <span>{info.val}</span>
+              <span>{user[key]}</span>
             </li>
           ))
             : 'Waiting or Not Found'
