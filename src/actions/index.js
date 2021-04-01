@@ -20,10 +20,9 @@ const setUserInfo = user => ({
   user,
 });
 
-const getItemsCall = (itemsCall, userId) => ({
+const getItemsCall = itemsCall => ({
   type: 'GET_ITEMS',
   itemsCall,
-  userId,
 });
 
 const setItems = items => ({
