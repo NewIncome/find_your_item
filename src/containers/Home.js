@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Navbar from '../components/Navbar';
 import {
   addUsername,
   newUserCall,
@@ -51,22 +52,25 @@ const Home = props => {
   }, [aPIcall]);
 
   return (
-    <section className="section" id="Home">
-      <h2>Find Your Item</h2>
-      <form>
-        <input
-          placeholder="Please input your User Name"
-          value={username}
-          onChange={onInput}
-        />
-        <button type="submit" onClick={onNewSubmit}>
-          <b>Signup User</b>
-        </button>
-        <button type="submit" onClick={onLogSubmit}>
-          <b>Login User</b>
-        </button>
-      </form>
-    </section>
+    <>
+      <Navbar backDir="/" />
+      <section className="section" id="Home">
+        <h2>Find Your Item</h2>
+        <form>
+          <input
+            placeholder="Please input your User Name"
+            value={username}
+            onChange={onInput}
+          />
+          <button type="submit" onClick={onNewSubmit}>
+            <b>Signup User</b>
+          </button>
+          <button type="submit" onClick={onLogSubmit}>
+            <b>Login User</b>
+          </button>
+        </form>
+      </section>
+    </>
   );
 };
 

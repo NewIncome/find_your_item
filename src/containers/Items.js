@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Loading from '../components/Loading';
 import Item from '../components/Item';
+import Navbar from '../components/Navbar';
 import { getItemsCall, setItems } from '../actions';
 
 const Items = props => {
@@ -32,17 +33,20 @@ const Items = props => {
   });
 
   return (
-    <section className="section" id="Items">
-      <h2>Items List</h2>
-      <Link to="/user">Go back to the User</Link>
-      {items === ''
-        ? <Loading />
-        : items.map(item => (
-          <Link to={`/item/${item.id}`} key={item.name}>
-            <Item itemInfo={item} />
-          </Link>
-        ))}
-    </section>
+    <>
+      <Navbar backDir="/user" />
+      <section className="section" id="Items">
+        <h2>Items List</h2>
+        <Link to="/user">Go back to the User</Link>
+        {items === ''
+          ? <Loading />
+          : items.map(item => (
+            <Link to={`/item/${item.id}`} key={item.name}>
+              <Item itemInfo={item} />
+            </Link>
+          ))}
+      </section>
+    </>
   );
 };
 

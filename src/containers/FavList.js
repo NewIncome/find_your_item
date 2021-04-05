@@ -1,11 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 const FavList = () => (
-  <section className="section" id="FavList">
-    <h2>This User&apos;s Favorite List</h2>
-    <Link to="/user">Go back to the User</Link>
-  </section>
+  <>
+    <Navbar backDir="/user" />
+    <section className="section" id="FavList">
+      <h2>This User&apos;s Favorite List</h2>
+      {/* List of Items */}
+    </section>
+  </>
 );
 
 export default FavList;

@@ -5,11 +5,9 @@ import UserInfo from './UserInfo';
 import Items from './Items';
 import FavList from './FavList';
 import Item from '../components/Item';
-import Navbar from '../components/Navbar';
 
 const Routes = () => (
   <BrowserRouter>
-    <Navbar />
     <Switch>
       <Route exact path="/" render={() => (<Home />)} />
       <Route path="/user" render={() => (<UserInfo />)} />
