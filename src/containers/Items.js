@@ -2,34 +2,38 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Loading from '../components/Loading';
 import Item from '../components/Item';
 import Navbar from '../components/Navbar';
-import { getItemsCall, setItems } from '../actions';
+import * as MyActions from '../actions';
 
 const Items = props => {
-  const {
-    getItemsCall,
-    itemsCall,
-    setItems,
-    items,
-  } = props;
+  const { actions, items, fetchCall } = props;
+  const url = 'https://findmyitem-api.herokuapp.com/items';
 
   useEffect(() => {
+    console.log('ITEMS at beginning LOAD');
+    console.log(items);
     if (items === '') {
-      getItemsCall(itemsCall);
+      // getItemsCall(itemsCall);
+      actions.fetchAPIcall(url, 'get', {});
+      console.log('FETCH CALL state-object');
+      console.log(fetchCall);
     }
   }, []);
 
   useEffect(() => {
-    if (items === '' && itemsCall !== {}) {
-      itemsCall.then(resp => {
-        console.log('ITEMS api call RESPONSE');
-        console.log(resp);
-        // setItems(resp.data);
-      });
-    }
+
+    // if (items === '' && itemsCall !== {}) {
+    //   itemsCall.then(resp => resp.json())
+    //     .then(resp => {
+    //       console.log('ITEMS api call RESPONSE');
+    //       console.log(resp);
+    //       setItems(resp);
+    //     });
+    // }
   });
 
   return (
@@ -41,7 +45,7 @@ const Items = props => {
         {items === ''
           ? <Loading />
           : items.map(item => (
-            <Link to={`/item/${item.id}`} key={item.name}>
+            <Link to={`/item/${item.id}`} key={`${item.id}-${item.name}`}>
               <Item itemInfo={item} />
             </Link>
           ))}
@@ -51,17 +55,22 @@ const Items = props => {
 };
 
 Items.propTypes = {
-  itemsCall: PropTypes.objectOf(PropTypes.any).isRequired,
-  getItemsCall: PropTypes.func.isRequired,
+  actions: PropTypes.objectOf(PropTypes.any).isRequired,
   items: PropTypes.string.isRequired,
-  setItems: PropTypes.func.isRequired,
+  fetchCall: PropTypes.objectOf(PropTypes.any).isRequired,
+  // itemsCall: PropTypes.objectOf(PropTypes.any).isRequired,
+  // getItemsCall: PropTypes.func.isRequired,
+  // setItems: PropTypes.func.isRequired,
+  // fetchCall: PropTypes.string.isRequired,
+  // fetchAPIcall: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ items, itemsCall }) => ({ items, itemsCall });
+const mapStateToProps = ({ items, itemsCall, fetchCall }) => ({ items, itemsCall, fetchCall });
 
-const mapDispatchToProps = dispatch => ({
-  getItemsCall: itemsCall => dispatch(getItemsCall(itemsCall)),
-  setItems: items => dispatch(setItems(items)),
-});
+function mapActionsToProps(dispatch) {
+  return {
+    actions: bindActionCreators({ ...MyActions }, dispatch),
+  };
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Items);
+export default connect(mapStateToProps, mapActionsToProps)(Items);

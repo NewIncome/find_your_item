@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const addUsername = username => ({
   type: 'SET_NAME',
   username,
@@ -19,6 +21,42 @@ const setUserInfo = user => ({
   type: 'SET_USER',
   user,
 });
+
+const fetchAPIbegin = dataUnk => ({
+  type: 'FETCH_API_BEGIN',
+  dataUnk,
+});
+
+const fetchAPIsuccess = payload => ({
+  type: 'FETCH_API_SUCCESS',
+  payload,
+});
+
+const fetchAPIfailure = error => ({
+  type: 'FETCH_API_FAILURE',
+  payload: error,
+});
+
+function handleErrors(response) {
+  if (!response.ok) { throw Error(JSON.stringify(response)); }
+  return response;
+}
+
+function fetchAPIcall(url, restAct, options) {
+  console.log('INSIDE fetchAPIcall ACTION');
+  console.log(url, restAct, options);
+  return dispatch => {
+    dispatch(fetchAPIbegin(url, options));
+
+    setTimeout(() => {
+      axios[restAct](url, options)
+        .then(handleErrors)
+        .then(resp => resp.json())
+        .then(jsonResp => dispatch(fetchAPIsuccess(jsonResp)))
+        .catch(err => dispatch(fetchAPIfailure(`${err}`)));
+    }, 1000);
+  };
+}
 
 const getItemsCall = itemsCall => ({
   type: 'GET_ITEMS',
@@ -64,6 +102,10 @@ export {
   newUserCall,
   logUserCall,
   setUserInfo,
+  fetchAPIcall,
+  fetchAPIbegin,
+  fetchAPIsuccess,
+  fetchAPIfailure,
   getItemsCall,
   setItems,
   getItemCall,
