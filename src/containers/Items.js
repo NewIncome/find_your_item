@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
+import faker from 'faker';
 import PropTypes from 'prop-types';
 import Loading from '../components/Loading';
 import Item from '../components/Item';
@@ -12,6 +13,10 @@ import * as MyActions from '../actions';
 const Items = props => {
   const { actions, items, fetchCall } = props;
   const url = 'https://findmyitem-api.herokuapp.com/items';
+
+  function generateImageLink(thing) {
+    return faker.image.unsplash.objects(640, 480, thing);
+  }
 
   useEffect(() => {
     if (!items[0]) actions.fetchAPIcall(url, 'get', {});
@@ -35,7 +40,10 @@ const Items = props => {
           ? <Loading />
           : items.map(item => (
             <Link to={`/item/${item.id}`} key={`${item.id}-${item.name}`}>
-              <Item item={item} />
+              <Item
+                item={item}
+                link={generateImageLink(item.name)}
+              />
             </Link>
           ))}
       </section>
