@@ -14,16 +14,7 @@ const Items = props => {
   const url = 'https://findmyitem-api.herokuapp.com/items';
 
   useEffect(() => {
-    if (!items[0]) {
-      // getItemsCall(itemsCall);
-      actions.fetchAPIcall(url, 'get', {});
-      console.log('FETCH CALL state-object');
-      console.log(fetchCall);
-      setTimeout(() => {
-        console.log('AFTER 2s TIMEOUT, fetchCall');
-        console.log(fetchCall);
-      }, 2000);
-    }
+    if (!items[0]) actions.fetchAPIcall(url, 'get', {});
   }, []);
 
   useEffect(() => actions.fetchAPIreset(), [items]);
@@ -31,18 +22,7 @@ const Items = props => {
   useEffect(() => {
     if (fetchCall.apiData) {
       actions.setItems(fetchCall.apiData);
-      // setTimeout(() => {
-      //   actions.fetchAPIreset();
-      // }, 500);
     }
-    // if (items === '' && itemsCall !== {}) {
-    //   itemsCall.then(resp => resp.json())
-    //     .then(resp => {
-    //       console.log('ITEMS api call RESPONSE');
-    //       console.log(resp);
-    //       setItems(resp);
-    //     });
-    // }
   });
 
   return (
@@ -55,7 +35,7 @@ const Items = props => {
           ? <Loading />
           : items.map(item => (
             <Link to={`/item/${item.id}`} key={`${item.id}-${item.name}`}>
-              <Item itemInfo={item} />
+              <Item item={item} />
             </Link>
           ))}
       </section>
@@ -67,11 +47,6 @@ Items.propTypes = {
   actions: PropTypes.objectOf(PropTypes.any).isRequired,
   items: PropTypes.arrayOf(PropTypes.any).isRequired,
   fetchCall: PropTypes.objectOf(PropTypes.any).isRequired,
-  // itemsCall: PropTypes.objectOf(PropTypes.any).isRequired,
-  // getItemsCall: PropTypes.func.isRequired,
-  // setItems: PropTypes.func.isRequired,
-  // fetchCall: PropTypes.string.isRequired,
-  // fetchAPIcall: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ items, itemsCall, fetchCall }) => ({ items, itemsCall, fetchCall });
