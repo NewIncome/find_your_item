@@ -53,7 +53,7 @@ const Home = props => {
 
   return (
     <>
-      <Navbar backDir="/" />
+      <Navbar icon="♾" />
       <section className="section" id="Home">
         <h2>Find Your Item</h2>
         <form>

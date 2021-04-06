@@ -9,7 +9,7 @@ const UserInfo = props => {
 
   return (
     <>
-      <Navbar backDir="/" />
+      <Navbar icon="☜" />
       <section className="section" id="User">
         <h2>
           {user.name}
