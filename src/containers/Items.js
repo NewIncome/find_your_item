@@ -57,7 +57,7 @@ Items.propTypes = {
   fetchCall: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-const mapStateToProps = ({ items, itemsCall, fetchCall }) => ({ items, itemsCall, fetchCall });
+const mapStateToProps = ({ items, fetchCall }) => ({ items, fetchCall });
 
 function mapActionsToProps(dispatch) {
   return {
