@@ -4,7 +4,8 @@ import Home from './Home';
 import UserInfo from './UserInfo';
 import Items from './Items';
 import FavList from './FavList';
-import Item from '../components/Item';
+import ItemInfo from './ItemInfo';
+import Error from './Error';
 
 const Routes = () => (
   <BrowserRouter>
@@ -12,8 +13,9 @@ const Routes = () => (
       <Route exact path="/" render={() => (<Home />)} />
       <Route path="/user" render={() => (<UserInfo />)} />
       <Route path="/items" render={() => (<Items />)} />
-      <Route path="/item/:id" render={() => (<Item />)} />
+      <Route path="/item/:id" render={() => (<ItemInfo />)} />
       <Route path="/fav_list" render={() => (<FavList />)} />
+      <Route component={Error} />
     </Switch>
   </BrowserRouter>
 );

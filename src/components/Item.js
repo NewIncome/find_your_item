@@ -13,6 +13,17 @@ const Item = props => {
         alt={item.name}
       />
       <p className="Items-description">{item.description}</p>
+      {item.id
+        ? (
+          <div>
+            <p>{item.id}</p>
+            <div>
+              <p>{item.created_at}</p>
+              <p>{item.updated_at}</p>
+            </div>
+          </div>
+        )
+        : ''}
     </div>
   );
 };

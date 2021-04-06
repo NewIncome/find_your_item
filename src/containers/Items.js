@@ -41,7 +41,7 @@ const Items = props => {
           : items.map(item => (
             <Link to={`/item/${item.id}`} key={`${item.id}-${item.name}`}>
               <Item
-                item={item}
+                item={{ name: item.name, description: item.description }}
                 link={generateImageLink(item.name)}
               />
             </Link>
