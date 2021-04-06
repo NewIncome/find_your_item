@@ -1,4 +1,4 @@
-const setItemsReducer = (state = '', action) => {
+const setItemsReducer = (state = [null], action) => {
   switch (action.type) {
     case 'SET_ITEMS':
       return action.items;

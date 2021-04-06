@@ -24,6 +24,13 @@ const fetchAPIcallReducer = (state = initState, action) => {
         loading: false,
         error: action.payload,
       };
+    case 'FETCH_API_RESET':
+      return {
+        ...state,
+        loading: false,
+        apiData: null,
+        error: null,
+      };
     default:
       return state;
   }

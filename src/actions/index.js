@@ -22,9 +22,9 @@ const setUserInfo = user => ({
   user,
 });
 
-const fetchAPIbegin = dataUnk => ({
+const fetchAPIbegin = callHeader => ({
   type: 'FETCH_API_BEGIN',
-  dataUnk,
+  callHeader,
 });
 
 const fetchAPIsuccess = payload => ({
@@ -38,25 +38,25 @@ const fetchAPIfailure = error => ({
 });
 
 function handleErrors(response) {
-  if (!response.ok) { throw Error(JSON.stringify(response)); }
+  console.log('RESPONSE INside ERROR');
+  console.log(response);
+  if (!response.ok && response.error) { throw Error(JSON.stringify(response)); }
   return response;
 }
 
 function fetchAPIcall(url, restAct, options) {
-  console.log('INSIDE fetchAPIcall ACTION');
-  console.log(url, restAct, options);
   return dispatch => {
     dispatch(fetchAPIbegin(url, options));
 
-    setTimeout(() => {
-      axios[restAct](url, options)
-        .then(handleErrors)
-        .then(resp => resp.json())
-        .then(jsonResp => dispatch(fetchAPIsuccess(jsonResp)))
-        .catch(err => dispatch(fetchAPIfailure(`${err}`)));
-    }, 1000);
+    setTimeout(() => axios[restAct](url, options)
+      .then(handleErrors)
+      .then(resp => resp.data)
+      .then(jsonResp => dispatch(fetchAPIsuccess(jsonResp)))
+      .catch(err => dispatch(fetchAPIfailure(`${err}`))), 1000);
   };
 }
+
+const fetchAPIreset = () => ({ type: 'FETCH_API_RESET' });
 
 const getItemsCall = itemsCall => ({
   type: 'GET_ITEMS',
@@ -106,6 +106,7 @@ export {
   fetchAPIbegin,
   fetchAPIsuccess,
   fetchAPIfailure,
+  fetchAPIreset,
   getItemsCall,
   setItems,
   getItemCall,

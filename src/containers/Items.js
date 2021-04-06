@@ -14,18 +14,27 @@ const Items = props => {
   const url = 'https://findmyitem-api.herokuapp.com/items';
 
   useEffect(() => {
-    console.log('ITEMS at beginning LOAD');
-    console.log(items);
-    if (items === '') {
+    if (!items[0]) {
       // getItemsCall(itemsCall);
       actions.fetchAPIcall(url, 'get', {});
       console.log('FETCH CALL state-object');
       console.log(fetchCall);
+      setTimeout(() => {
+        console.log('AFTER 2s TIMEOUT, fetchCall');
+        console.log(fetchCall);
+      }, 2000);
     }
   }, []);
 
-  useEffect(() => {
+  useEffect(() => actions.fetchAPIreset(), [items]);
 
+  useEffect(() => {
+    if (fetchCall.apiData) {
+      actions.setItems(fetchCall.apiData);
+      // setTimeout(() => {
+      //   actions.fetchAPIreset();
+      // }, 500);
+    }
     // if (items === '' && itemsCall !== {}) {
     //   itemsCall.then(resp => resp.json())
     //     .then(resp => {
@@ -42,7 +51,7 @@ const Items = props => {
       <section className="section" id="Items">
         <h2>Items List</h2>
         <Link to="/user">Go back to the User</Link>
-        {items === ''
+        {fetchCall.loading || !items[0]
           ? <Loading />
           : items.map(item => (
             <Link to={`/item/${item.id}`} key={`${item.id}-${item.name}`}>
@@ -56,7 +65,7 @@ const Items = props => {
 
 Items.propTypes = {
   actions: PropTypes.objectOf(PropTypes.any).isRequired,
-  items: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(PropTypes.any).isRequired,
   fetchCall: PropTypes.objectOf(PropTypes.any).isRequired,
   // itemsCall: PropTypes.objectOf(PropTypes.any).isRequired,
   // getItemsCall: PropTypes.func.isRequired,
