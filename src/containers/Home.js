@@ -32,6 +32,7 @@ const Home = props => {
   } = props;
   const [aPIcall, setAPIcall] = useState(() => '');
   const history = useHistory();
+  history.push('/');
   const loginUrl = 'https://findmyitem-api.herokuapp.com/login';
   // const signupUrl = 'https://findmyitem-api.herokuapp.com/users';
 
@@ -48,6 +49,8 @@ const Home = props => {
     // logUserCall(username);
     // setAPIcall(userCall);
     actions.fetchAPIcall(loginUrl, 'post', { name: username });
+    console.log('after button CLICK');
+    console.log(fetchCall);
   };
 
   useEffect(() => {
@@ -60,6 +63,10 @@ const Home = props => {
       history.push('/user');
     }
   }, [user]);
+
+  useEffect(() => {
+    if (fetchCall.error) history.push('/error');
+  });
 
   // useEffect(() => {
   //   if (aPIcall !== '') {

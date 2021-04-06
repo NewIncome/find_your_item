@@ -15,6 +15,7 @@ const Routes = () => (
       <Route path="/items" render={() => (<Items />)} />
       <Route path="/item/:id" render={() => (<ItemInfo />)} />
       <Route path="/fav_list" render={() => (<FavList />)} />
+      <Route path="/error" render={() => (<Error />)} />
       <Route component={Error} />
     </Switch>
   </BrowserRouter>
