@@ -6,48 +6,29 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Navbar from '../components/Navbar';
 import Loading from '../components/Loading';
-// import {
-//   addUsername,
-//   newUserCall,
-//   logUserCall,
-//   setUserInfo,
-// } from '../actions';
 import * as MyActions from '../actions';
 
 const Home = props => {
-  // const {
-  //   username,
-  //   addUsername,
-  //   userCall,
-  //   newUserCall,
-  //   logUserCall,
-  //   setUserInfo,
-  // } = props;
-
   const {
     actions,
     user,
     fetchCall,
     username,
   } = props;
-  const [aPIcall, setAPIcall] = useState(() => '');
   const history = useHistory();
   history.push('/');
   const loginUrl = 'https://findmyitem-api.herokuapp.com/login';
-  // const signupUrl = 'https://findmyitem-api.herokuapp.com/users';
+  const signupUrl = 'https://findmyitem-api.herokuapp.com/users';
 
   const onInput = event => actions.addUsername(event.target.value);
 
   const onNewSubmit = event => {
     event.preventDefault();
-    // newUserCall(username);
-    // setAPIcall(userCall);
+    actions.fetchAPIcall(signupUrl, 'post', { name: username });
   };
 
   const onLogSubmit = async event => {
     event.preventDefault();
-    // logUserCall(username);
-    // setAPIcall(userCall);
     actions.fetchAPIcall(loginUrl, 'post', { name: username });
     console.log('after button CLICK');
     console.log(fetchCall);
@@ -67,20 +48,6 @@ const Home = props => {
   useEffect(() => {
     if (fetchCall.error) history.push('/error');
   });
-
-  // useEffect(() => {
-  //   if (aPIcall !== '') {
-  //     let v;
-  //     userCall.then(resp => {
-  //       v = resp;
-
-  //       setUserInfo(v.data);
-
-  //       setAPIcall('');
-  //       history.push('/user');
-  //     });
-  //   }
-  // }, [aPIcall]);
 
   return (
     <>
@@ -110,13 +77,6 @@ const Home = props => {
 };
 
 Home.propTypes = {
-//   username: PropTypes.string.isRequired,
-//   addUsername: PropTypes.func.isRequired,
-//   userCall: PropTypes.objectOf(PropTypes.any).isRequired,
-//   newUserCall: PropTypes.func.isRequired,
-//   logUserCall: PropTypes.func.isRequired,
-//   setUserInfo: PropTypes.func.isRequired,
-// };
   actions: PropTypes.objectOf(PropTypes.any).isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
   fetchCall: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -124,13 +84,6 @@ Home.propTypes = {
 };
 
 const mapStateToProps = ({ username, user, fetchCall }) => ({ username, user, fetchCall });
-
-// const mapDispatchToProps = dispatch => ({
-//   addUsername: username => dispatch(addUsername(username)),
-//   newUserCall: (username, userCall) => dispatch(newUserCall(username, userCall)),
-//   logUserCall: (username, userCall) => dispatch(logUserCall(username, userCall)),
-//   setUserInfo: user => dispatch(setUserInfo(user)),
-// });
 
 function mapActionsToProps(dispatch) {
   return {
