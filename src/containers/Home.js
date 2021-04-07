@@ -1,9 +1,9 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import Error from './Error';
 import Navbar from '../components/Navbar';
 import Loading from '../components/Loading';
 import * as MyActions from '../actions';
@@ -45,9 +45,9 @@ const Home = props => {
     }
   }, [user]);
 
-  useEffect(() => {
-    if (fetchCall.error) history.push('/error');
-  });
+  // useEffect(() => {
+  //   if (fetchCall.error) history.push('/error');
+  // });
 
   return (
     <>
@@ -71,6 +71,7 @@ const Home = props => {
               </button>
             </form>
           )}
+        {fetchCall.error ? <Error /> : ''}
       </section>
     </>
   );
