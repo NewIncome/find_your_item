@@ -30,8 +30,8 @@ const UserInfo = props => {
       <Navbar icon="☜" />
       <section className="section" id="User">
         <h2>
-          {user.name}
-          , Info
+          {user.name.toUpperCase().concat("'s ")}
+          info
         </h2>
         <ul>
           {
