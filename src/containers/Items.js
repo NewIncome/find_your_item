@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import faker from 'faker';
 import PropTypes from 'prop-types';
-import Loading from '../components/Loading';
+import Loader from '../components/Loader';
 import Item from '../components/Item';
 import Navbar from '../components/Navbar';
 import * as MyActions from '../actions';
@@ -37,7 +37,7 @@ const Items = props => {
         <h2>Items List</h2>
         <Link to="/user">Go back to the User</Link>
         {fetchCall.loading || !items[0]
-          ? <Loading />
+          ? <Loader />
           : items.map(item => (
             <Link to={`/item/${item.id}`} key={`${item.id}-${item.name}`}>
               <Item

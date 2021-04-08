@@ -10,6 +10,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [API GitHub Repo](https://github.com/NewIncome/find-my-item-api)
 - [API Live Version](https://findmyitem-api.herokuapp.com)
 
+## Acknowledgements
+### Loader
+Thanks and inspiration from
++ [Andreas Storm](https://codepen.io/avstorm), (tea cup)
++ [Dave McCarthy](https://codepen.io/AsLittleDesign), (loading text)
+
 
 ## Available Scripts
 

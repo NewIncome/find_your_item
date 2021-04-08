@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Error from './Error';
 import Navbar from '../components/Navbar';
-import Loading from '../components/Loading';
+import Loader from '../components/Loader';
 import * as MyActions from '../actions';
 
 const Home = props => {
@@ -55,7 +55,7 @@ const Home = props => {
       <section className="section" id="Home">
         <h2>Find Your Item</h2>
         {fetchCall.loading
-          ? <Loading />
+          ? <Loader />
           : (
             <form>
               <input
