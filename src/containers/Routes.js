@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from './Home';
-import UserInfo from './UserInfo';
-import Items from './Items';
-import FavList from './FavList';
-import ItemInfo from './ItemInfo';
-import Error from './Error';
+import Home from '../pages/Home';
+import UserInfo from '../pages/UserInfo';
+import Items from '../pages/Items';
+import FavList from '../pages/FavList';
+import ItemInfo from '../pages/ItemInfo';
+import Error from '../components/Error';
 
 const Routes = () => (
   <BrowserRouter>
