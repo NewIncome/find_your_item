@@ -14,6 +14,9 @@ const UserInfo = props => {
   const url = 'https://findmyitem-api.herokuapp.com/items';
 
   useEffect(() => {
+    console.log('PAGE: USER INFO, items & url');
+    console.log(items);
+    console.log(url);
     if (!items[0]) actions.fetchAPIcall(url, 'get', {});
   }, []);
 
@@ -21,6 +24,8 @@ const UserInfo = props => {
 
   useEffect(() => {
     if (fetchCall.apiData) {
+      console.log('PAGE: USER INFO, f e t c h C a l l');
+      console.log(fetchCall);
       actions.setItems(fetchCall.apiData);
     }
   });

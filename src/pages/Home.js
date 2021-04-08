@@ -27,7 +27,7 @@ const Home = props => {
     actions.fetchAPIcall(signupUrl, 'post', { name: username });
   };
 
-  const onLogSubmit = async event => {
+  const onLogSubmit = event => {
     event.preventDefault();
     actions.fetchAPIcall(loginUrl, 'post', { name: username });
     console.log('after button CLICK');
