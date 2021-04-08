@@ -28,9 +28,13 @@ const Item = props => {
   );
 };
 
+Item.defaultProps = {
+  link: '',
+};
+
 Item.propTypes = {
   item: PropTypes.objectOf(PropTypes.any).isRequired,
-  link: PropTypes.string.isRequired,
+  link: PropTypes.string,
 };
 
 export default Item;

@@ -26,7 +26,7 @@ const ItemInfo = props => {
 };
 
 ItemInfo.propTypes = {
-  items: PropTypes.objectOf(PropTypes.any).isRequired,
+  items: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
 const mapStateToProps = items => items;
