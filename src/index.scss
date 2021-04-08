@@ -211,10 +211,9 @@
       display: inline-block;
       margin-left: -12px;
     }
-    
-    .txt-dots {
 
-      &:after {
+    .txt-dots {
+      &::after {
         content: "";
         font-weight: bold;
         animation-name: loading-text;
