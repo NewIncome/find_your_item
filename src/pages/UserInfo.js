@@ -30,9 +30,13 @@ const UserInfo = props => {
     }
   });
 
+  const onClick = () => {
+    actions.setUserInfo({});
+  };
+
   return (
     <>
-      <Navbar icon="☜" />
+      <Navbar icon="☜" onClick={onClick} />
       <section className="section" id="User">
         <h2>
           {user.name.toUpperCase().concat("'s ")}

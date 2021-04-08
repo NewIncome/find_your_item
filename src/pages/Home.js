@@ -16,7 +16,6 @@ const Home = props => {
     username,
   } = props;
   const history = useHistory();
-  history.push('/');
   const loginUrl = 'https://findmyitem-api.herokuapp.com/login';
   const signupUrl = 'https://findmyitem-api.herokuapp.com/users';
 
@@ -44,10 +43,6 @@ const Home = props => {
       history.push('/user');
     }
   }, [user]);
-
-  // useEffect(() => {
-  //   if (fetchCall.error) history.push('/error');
-  // });
 
   return (
     <>

@@ -27,7 +27,7 @@ const Navbar = props => {
           : backDir
             ? <Link to={backDir}>{icon || '⊲'}</Link>
             : (
-              <a href="/">
+              <a href="/" onClick={onClick}>
                 {icon || '⊲'}
                 {icon === '☜'
                   ? <span className="logout">LOGOUT</span> : ''}
