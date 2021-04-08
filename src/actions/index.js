@@ -5,21 +5,19 @@ const addUsername = username => ({
   username,
 });
 
-const newUserCall = (userCall, username) => ({
-  type: 'NEW_USER_CALL',
-  userCall,
-  username,
-});
-
-const logUserCall = (username, userCall) => ({
-  type: 'LOG_USER_CALL',
-  userCall,
-  username,
-});
-
 const setUserInfo = user => ({
   type: 'SET_USER',
   user,
+});
+
+const setItems = items => ({
+  type: 'SET_ITEMS',
+  items,
+});
+
+const setFavList = favList => ({
+  type: 'SET_FAVLIST',
+  favList,
 });
 
 const fetchAPIbegin = callHeader => ({
@@ -58,60 +56,16 @@ function fetchAPIcall(url, restAct, options) {
 
 const fetchAPIreset = () => ({ type: 'FETCH_API_RESET' });
 
-const getItemsCall = itemsCall => ({
-  type: 'GET_ITEMS',
-  itemsCall,
-});
-
-const setItems = items => ({
-  type: 'SET_ITEMS',
-  items,
-});
-
-const getItemCall = (itemCall, itemId) => ({
-  type: 'GET_ITEM',
-  itemId,
-  itemCall,
-});
-
-const setItem = item => ({
-  type: 'SET_ITEM',
-  item,
-});
-
-const newItemCall = (newItemCall, itemId) => ({
-  type: 'NEW_ITEM_CALL',
-  newItemCall,
-  itemId,
-});
-
-const updateItemCall = (updateItemCall, itemId) => ({
-  type: 'NEW_ITEM_CALL',
-  updateItemCall,
-  itemId,
-});
-
-const removeItemCall = (removeItemCall, itemId) => ({
-  type: 'REMOVE_ITEM_CALL',
-  removeItemCall,
-  itemId,
-});
+// possible CRUD actions
 
 export {
   addUsername,
-  newUserCall,
-  logUserCall,
   setUserInfo,
+  setItems,
+  setFavList,
   fetchAPIcall,
   fetchAPIbegin,
   fetchAPIsuccess,
   fetchAPIfailure,
   fetchAPIreset,
-  getItemsCall,
-  setItems,
-  getItemCall,
-  setItem,
-  newItemCall,
-  updateItemCall,
-  removeItemCall,
 };
