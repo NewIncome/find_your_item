@@ -1,4 +1,4 @@
-@import 'styles/_home.scss';
+@import 'styles/loader', 'styles/navbar', 'styles/_home.scss';
 
 * {
   box-sizing: border-box;
@@ -14,4 +14,10 @@
   max-height: 800px;
   min-height: 85vh;
   min-width: 400px;
+}
+
+.error-message {
+  color: #911;
+  float: left;
+  margin: 20px 0 0 18%;
 }

@@ -63,6 +63,7 @@ const Home = props => {
                   value={username}
                   onChange={onInput}
                 />
+                {fetchCall.error ? <Error /> : ''}
                 {loginFlag
                   ? (
                     <button className="home-btn" type="submit" onClick={onLogSubmit}>
@@ -87,7 +88,6 @@ const Home = props => {
               Not signed up?
             </button>
           ) : ''}
-        {fetchCall.error ? <Error /> : ''}
       </section>
     </>
   );
