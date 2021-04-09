@@ -33,6 +33,21 @@
       font-size: 1em;
     }
   }
+
+  .edit {
+    background: transparent;
+    border: none;
+    color: #753622;
+    cursor: pointer;
+    font-size: 1.3em;
+    font-weight: bold;
+    transform: rotate(90deg);
+
+    &:hover {
+      font-size: 1.4em;
+      text-shadow: 1px 1px 3px #9f4a2ed5;
+    }
+  }
 }
 
 .loader {

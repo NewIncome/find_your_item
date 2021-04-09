@@ -10,10 +10,6 @@ import Navbar from '../components/Navbar';
 const Items = props => {
   const { items } = props;
 
-  function generateImageLink(thing) {
-    return faker.image.unsplash.objects(640, 480, thing);
-  }
-
   return (
     <>
       <Navbar backDir="/user" />
@@ -22,10 +18,7 @@ const Items = props => {
         <Link to="/user">Go back to the User</Link>
         {items.map(item => (
           <Link to={`/item/${item.id}`} key={`${item.id}-${item.name}`}>
-            <Item
-              item={{ name: item.name, description: item.description }}
-              link={generateImageLink(item.name)}
-            />
+            <Item item={item} />
           </Link>
         ))}
       </section>

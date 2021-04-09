@@ -36,7 +36,9 @@ const Navbar = props => {
         }
       </div>
       <span className="title">Navbar</span>
-      <div className="search">♡☜</div>
+      {backDir === '/items'
+        ? <button className="edit" onClick={onClick} type="button">✎</button>
+        : <div className="like">♡☜</div>}
     </nav>
     // ≡ ☌
   );
