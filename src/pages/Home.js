@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Error from '../components/Error';
-import Navbar from '../components/Navbar';
 import Loader from '../components/Loader';
 import * as MyActions from '../actions';
 
@@ -15,6 +14,7 @@ const Home = props => {
     fetchCall,
     username,
   } = props;
+  const [loginFlag, setLoginFlag] = useState(true);
   const history = useHistory();
   const loginUrl = 'https://findmyitem-api.herokuapp.com/login';
   const signupUrl = 'https://findmyitem-api.herokuapp.com/users';
@@ -33,6 +33,8 @@ const Home = props => {
     console.log(fetchCall);
   };
 
+  const onClick = () => setLoginFlag(false);
+
   useEffect(() => {
     if (fetchCall.apiData) actions.setUserInfo(fetchCall.apiData);
   });
@@ -46,26 +48,45 @@ const Home = props => {
 
   return (
     <>
-      <Navbar icon="♾" />
-      <section className="section" id="Home">
-        <h2>Find Your Item</h2>
+      <section className="home-section" id="Home">
+        <h2 className="home-h">Find Your Item</h2>
         {fetchCall.loading
           ? <Loader />
           : (
-            <form>
-              <input
-                placeholder="Please input your User Name"
-                value={username}
-                onChange={onInput}
-              />
-              <button type="submit" onClick={onNewSubmit}>
-                <b>Signup User</b>
-              </button>
-              <button type="submit" onClick={onLogSubmit}>
-                <b>Login User</b>
-              </button>
-            </form>
+            <>
+              {/* eslint-disable react/jsx-one-expression-per-line */}
+              <p className="t-text">Hi there! {loginFlag ? 'Login' : 'Signup'} to start looking at items</p>
+              <form className="home-form">
+                <input
+                  className="home-input"
+                  placeholder="Please input your User Name"
+                  value={username}
+                  onChange={onInput}
+                />
+                {loginFlag
+                  ? (
+                    <button className="home-btn" type="submit" onClick={onLogSubmit}>
+                      <b>Login User</b>
+                    </button>
+                  )
+                  : (
+                    <button className="home-btn" type="submit" onClick={onNewSubmit}>
+                      <b>Signup User</b>
+                    </button>
+                  )}
+              </form>
+            </>
           )}
+        {loginFlag
+          ? (
+            <button
+              className="signup"
+              type="button"
+              onClick={onClick}
+            >
+              Not signed up?
+            </button>
+          ) : ''}
         {fetchCall.error ? <Error /> : ''}
       </section>
     </>
