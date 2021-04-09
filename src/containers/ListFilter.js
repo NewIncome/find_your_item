@@ -14,7 +14,7 @@ const ListFilter = props => {
     <div className="favorite-items">
       {favList.length > 0
         ? favItemsList.map(item => (
-          <Item item={item} key={item.name} />
+          <Item item={item} key={item.name.concat(item.id)} />
         ))
         : (
           <div className="announce">
