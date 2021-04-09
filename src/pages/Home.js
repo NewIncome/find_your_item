@@ -49,13 +49,13 @@ const Home = props => {
   return (
     <>
       <section className="home-section" id="Home">
-        <h2 className="home-h">Find Your Item</h2>
+        <h2 className="home-h h">Find Your Item</h2>
         {fetchCall.loading
           ? <Loader />
           : (
             <>
               {/* eslint-disable react/jsx-one-expression-per-line */}
-              <p className="t-text">Hi there! {loginFlag ? 'Login' : 'Signup'} to start looking at items</p>
+              <p className="t-text p">Hi there! {loginFlag ? 'Login' : 'Signup'} to start looking at items</p>
               <form className="home-form">
                 <input
                   className="home-input"

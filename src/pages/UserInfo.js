@@ -70,11 +70,11 @@ const UserInfo = props => {
     <>
       <Navbar icon="☜" onClick={onClick} />
       <section className="section" id="User">
-        <h2>
+        <h2 className="user-h h">
           {user.name.toUpperCase().concat("'s ")}
           info
         </h2>
-        <ul>
+        <ul className="user-ul p">
           {
             user ? Object.keys(user).map(key => (
               <li key={key}>
