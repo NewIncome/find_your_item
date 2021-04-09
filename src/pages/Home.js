@@ -29,8 +29,6 @@ const Home = props => {
   const onLogSubmit = event => {
     event.preventDefault();
     actions.fetchAPIcall(loginUrl, 'post', { name: username });
-    console.log('after button CLICK');
-    console.log(fetchCall);
   };
 
   const onClick = () => setLoginFlag(false);

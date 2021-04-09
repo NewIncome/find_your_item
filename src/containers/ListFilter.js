@@ -7,8 +7,6 @@ const ListFilter = props => {
   const { items, favList } = props;
 
   const favItemsList = items.filter(itm => favList.includes(itm.id));
-  console.log('FAVORITE Items List');
-  console.log(favItemsList);
 
   return (
     <div className="favorite-items">

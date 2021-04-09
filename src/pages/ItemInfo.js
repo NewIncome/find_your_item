@@ -8,12 +8,7 @@ import Item from '../components/Item';
 const ItemInfo = props => {
   const { items } = props;
   const { id } = useParams();
-  console.log('PARAMS ID');
-  console.log(id);
-  console.log(typeof id);
-  console.log(items);
   const item = items.find(itm => itm.id === Number(id)) || null;
-  console.log(item);
 
   return (
     <>

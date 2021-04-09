@@ -36,8 +36,6 @@ const fetchAPIfailure = error => ({
 });
 
 function handleErrors(response) {
-  console.log('RESPONSE INside ERROR');
-  console.log(response);
   if (!response.ok && response.error) { throw Error(JSON.stringify(response)); }
   return response;
 }
@@ -55,8 +53,6 @@ function fetchAPIcall(url, restAct, options) {
 }
 
 const fetchAPIreset = () => ({ type: 'FETCH_API_RESET' });
-
-// possible CRUD actions
 
 export {
   addUsername,

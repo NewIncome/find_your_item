@@ -18,15 +18,11 @@ const UserInfo = props => {
   const favListUrl = `https://findmyitem-api.herokuapp.com/users/${user.id}/favorites_lists`;
 
   useEffect(() => {
-    console.log('USE-EFFECT :: On-Load');
-    console.log(apiFlag);
     if (!items[0]) actions.fetchAPIcall(itemsUrl, 'get', {});
   }, []);
 
   useEffect(() => {
     if (!fetchCall.apiData && items[0]) {
-      console.log('USE-EFFECT :: Items');
-      console.log(items, fetchCall);
       actions.fetchAPIcall(favListUrl, 'get', {});
       setApiFlag({ itm: true, fvl: false });
     }
@@ -34,31 +30,14 @@ const UserInfo = props => {
 
   useEffect(() => {
     if (fetchCall.apiData && !items[0] && !favList[0]) {
-      console.log('USE-EFFECT :: setItems');
-      console.log(items, fetchCall, apiFlag);
       actions.setItems(fetchCall.apiData);
       actions.fetchAPIreset();
-      // setApiFlag({ itm: true });
     }
-    if (apiFlag.itm && fetchCall.apiData && !favList[0]) {
-      console.log('USE-EFFECT :: setFavList');
-      console.log(fetchCall, favList);
-      actions.setFavList(fetchCall.apiData);
-    }
+    if (apiFlag.itm && fetchCall.apiData && !favList[0]) actions.setFavList(fetchCall.apiData);
   });
 
   useEffect(() => {
-    console.log('USE-EFFECT :: FavList');
-    console.log(fetchCall.loading);
-    console.log(favList);
-    console.log(apiFlag);
-    if (favList[0]) {
-      console.log('USE-EFFECT :: Inside FavList IF');
-      console.log(items);
-      console.log(favList);
-      console.log(fetchCall);
-      actions.fetchAPIreset();
-    }
+    if (favList[0]) actions.fetchAPIreset();
   }, [favList]);
 
   const onClick = () => {
