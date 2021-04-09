@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -9,29 +10,60 @@ import * as MyActions from '../actions';
 
 const UserInfo = props => {
   const {
-    actions, items, fetchCall, user,
+    actions, items, fetchCall, user, favList,
   } = props;
-  const url = 'https://findmyitem-api.herokuapp.com/items';
+  const [apiFlag, setApiFlag] = useState({ itm: false, fvl: false });
+
+  const itemsUrl = 'https://findmyitem-api.herokuapp.com/items';
+  const favListUrl = `https://findmyitem-api.herokuapp.com/users/${user.id}/favorites_lists`;
 
   useEffect(() => {
-    console.log('PAGE: USER INFO, items & url');
-    console.log(items);
-    console.log(url);
-    if (!items[0]) actions.fetchAPIcall(url, 'get', {});
+    console.log('USE-EFFECT :: On-Load');
+    console.log(apiFlag);
+    if (!items[0]) actions.fetchAPIcall(itemsUrl, 'get', {});
   }, []);
 
-  useEffect(() => actions.fetchAPIreset(), [items]);
+  useEffect(() => {
+    if (!fetchCall.apiData && items[0]) {
+      console.log('USE-EFFECT :: Items');
+      console.log(items, fetchCall);
+      actions.fetchAPIcall(favListUrl, 'get', {});
+      setApiFlag({ itm: true, fvl: false });
+    }
+  }, [items]);
 
   useEffect(() => {
-    if (fetchCall.apiData) {
-      console.log('PAGE: USER INFO, f e t c h C a l l');
-      console.log(fetchCall);
+    if (fetchCall.apiData && !items[0] && !favList[0]) {
+      console.log('USE-EFFECT :: setItems');
+      console.log(items, fetchCall, apiFlag);
       actions.setItems(fetchCall.apiData);
+      actions.fetchAPIreset();
+      // setApiFlag({ itm: true });
+    }
+    if (apiFlag.itm && fetchCall.apiData && !favList[0]) {
+      console.log('USE-EFFECT :: setFavList');
+      console.log(fetchCall, favList);
+      actions.setFavList(fetchCall.apiData);
     }
   });
 
+  useEffect(() => {
+    console.log('USE-EFFECT :: FavList');
+    console.log(fetchCall.loading);
+    console.log(favList);
+    console.log(apiFlag);
+    if (favList[0]) {
+      console.log('USE-EFFECT :: Inside FavList IF');
+      console.log(items);
+      console.log(favList);
+      console.log(fetchCall);
+      actions.fetchAPIreset();
+    }
+  }, [favList]);
+
   const onClick = () => {
     actions.setUserInfo({});
+    actions.setFavList([null]);
   };
 
   return (
@@ -54,7 +86,7 @@ const UserInfo = props => {
               : 'Waiting or Not Found'
           }
         </ul>
-        {fetchCall.loading || !items[0]
+        {fetchCall.loading || !items[0] || !favList[0]
           ? <Loader />
           : (
             <>
@@ -71,10 +103,15 @@ UserInfo.propTypes = {
   user: PropTypes.objectOf(PropTypes.any).isRequired,
   actions: PropTypes.objectOf(PropTypes.any).isRequired,
   items: PropTypes.arrayOf(PropTypes.any).isRequired,
+  favList: PropTypes.arrayOf(PropTypes.any).isRequired,
   fetchCall: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-const mapStateToProps = ({ user, items, fetchCall }) => ({ user, items, fetchCall });
+const mapStateToProps = ({
+  user, items, fetchCall, favList,
+}) => ({
+  user, items, fetchCall, favList,
+});
 
 function mapActionsToProps(dispatch) {
   return {
