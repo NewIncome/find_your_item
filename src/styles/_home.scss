@@ -13,14 +13,14 @@
 
   .t-text {
     color: #222;
-    font-family: Cordia-New;
+    font-family: Cordia-New, sans-serif;
     font-size: 0.9em;
     letter-spacing: 0.6px;
     line-height: 22px;
     margin: auto;
     margin-bottom: 50px;
     width: 200px;
-}
+  }
 
   .home-input {
     border-radius: 20px;
@@ -35,7 +35,7 @@
     background-color: #fb5a05;
     border-radius: 20px;
     border: none;
-    box-shadow: 1px 1px 4px 0px #fb5a05;
+    box-shadow: 1px 1px 4px 0 #fb5a05;
     color: #fff;
     display: block;
     margin: 14% auto 10px;
