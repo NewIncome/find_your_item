@@ -65,7 +65,7 @@ const UserInfo = props => {
               : 'Waiting or Not Found'
           }
         </ul>
-        {fetchCall.loading || !items[0] || !favList[0]
+        {fetchCall.loading || !items[0] || favList[0] === null
           ? <Loader />
           : (
             <>
