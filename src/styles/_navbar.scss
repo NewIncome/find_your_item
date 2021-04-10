@@ -6,37 +6,35 @@
 
   .logo {
     font-size: 2em;
-
-    a { text-decoration: none; }
+    &:hover { text-shadow: 0px 0px 1px #000; }
 
     .logout {
-      color: #222;
       font-size: 0.35em !important;
       margin-left: 8px;
       vertical-align: middle;
     }
+  }
 
-    .title {
-      align-self: center;
-      margin-left: -5%;
-    }
+  .title {
+    align-self: center;
+    margin-left: -5%;
+  }
 
-    .errorBackButton {
-      background: none;
-      border: none;
-      font-size: 1em;
-    }
+  .errorBackButton {
+    background: none;
+    border: none;
+    font-size: 1em;
+  }
 
-    .like {
-      align-self: center;
-      font-family: Helvetica;
-      font-size: 0.85em;
-      font-weight: bold;
-      letter-spacing: -1px;
-      line-height: 13px;
-      text-shadow: 1px 1px 1px #666;
-      width: 50px;
-    }
+  .like {
+    align-self: center;
+    font-family: Helvetica;
+    font-size: 0.85em;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 13px;
+    text-shadow: 1px 1px 1px #666;
+    width: 50px;
   }
 
   .edit {

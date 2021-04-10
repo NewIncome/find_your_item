@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Navbar from '../components/Navbar';
@@ -13,6 +13,7 @@ const UserInfo = props => {
     actions, items, fetchCall, user, favList,
   } = props;
   const [apiFlag, setApiFlag] = useState({ itm: false, fvl: false });
+  const { history } = useHistory();
 
   const itemsUrl = 'https://findmyitem-api.herokuapp.com/items';
   const favListUrl = `https://findmyitem-api.herokuapp.com/users/${user.id}/favorites_lists`;
@@ -37,7 +38,10 @@ const UserInfo = props => {
   });
 
   useEffect(() => {
-    if (favList[0]) actions.fetchAPIreset();
+    if (favList[0]) {
+      actions.fetchAPIreset();
+      setApiFlag({ itm: true, fvl: true });
+    }
   }, [favList]);
 
   const onClick = () => {
@@ -45,10 +49,14 @@ const UserInfo = props => {
     actions.setFavList([null]);
   };
 
+  const rightLnk = () => {
+    history.push('/favlist');
+  };
+
   return (
     <>
-      <Navbar icon="☜" onClick={onClick} />
-      <section className="section" id="User">
+      <Navbar icon="☜" onClick={onClick} rightLnk={rightLnk} fvlReady={apiFlag.fvl} />
+      <section className="userInfo-section" id="User">
         <h2 className="user-h h">
           {user.name.toUpperCase().concat("'s ")}
           info
@@ -56,22 +64,24 @@ const UserInfo = props => {
         <ul className="user-ul p">
           {
             user ? Object.keys(user).map(key => (
-              <li key={key}>
-                {key}
+              <li key={key} className="user-li">
+                {key.toUpperCase()}
                 :
-                <span>{user[key]}</span>
+                <span className="user-detail">{user[key]}</span>
               </li>
             ))
               : 'Waiting or Not Found'
           }
         </ul>
         {fetchCall.loading || !items[0] || favList[0] === null
-          ? <Loader />
-          : (
+          ? (
             <>
-              <Link to="/items">See the Items</Link>
-              <Link to="/fav_list">See my Favorites List</Link>
+              <Loader />
+              <div className="btm-link h">Item&apos;s List</div>
             </>
+          )
+          : (
+            <Link to="/items" className="btm-link h">Item&apos;s List</Link>
           )}
       </section>
     </>

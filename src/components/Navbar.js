@@ -8,6 +8,7 @@ const Navbar = props => {
     icon,
     error,
     onClick,
+    fvlReady,
   } = props;
 
   return (
@@ -25,9 +26,9 @@ const Navbar = props => {
             </button>
           )
           : backDir
-            ? <Link to={backDir}>{icon || '⊲'}</Link>
+            ? <Link to={backDir} className="a">{icon || '⊲'}</Link>
             : (
-              <a href="/" onClick={onClick}>
+              <a href="/" onClick={onClick} className="a">
                 {icon || '⊲'}
                 {icon === '☜'
                   ? <span className="logout">LOGOUT</span> : ''}
@@ -38,7 +39,9 @@ const Navbar = props => {
       <span className="title h">Navbar</span>
       {backDir === '/items'
         ? <button className="edit" onClick={onClick} type="button">✎</button>
-        : <div className="like">♡☜</div>}
+        : fvlReady
+          ? <Link to="/fav_list" className="like a">Fav&apos;s List</Link>
+          : <div className="like a">Fav&apos;s List</div>}
     </nav>
     // ≡ ☌
   );
@@ -49,6 +52,7 @@ Navbar.defaultProps = {
   icon: '',
   error: '',
   onClick: () => {},
+  fvlReady: false,
 };
 
 Navbar.propTypes = {
@@ -56,6 +60,7 @@ Navbar.propTypes = {
   icon: PropTypes.string,
   error: PropTypes.string,
   onClick: PropTypes.func,
+  fvlReady: PropTypes.string,
 };
 
 export default Navbar;
