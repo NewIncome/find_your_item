@@ -35,7 +35,7 @@ const Navbar = props => {
             )
         }
       </div>
-      <span className="title">Navbar</span>
+      <span className="title h">Navbar</span>
       {backDir === '/items'
         ? <button className="edit" onClick={onClick} type="button">✎</button>
         : <div className="like">♡☜</div>}
