@@ -74,18 +74,18 @@ const Home = props => {
                     </button>
                   )}
               </form>
+              {loginFlag
+                ? (
+                  <button
+                    className="signup"
+                    type="button"
+                    onClick={onClick}
+                  >
+                    Not signed up?
+                  </button>
+                ) : ''}
             </>
           )}
-        {loginFlag
-          ? (
-            <button
-              className="signup"
-              type="button"
-              onClick={onClick}
-            >
-              Not signed up?
-            </button>
-          ) : ''}
       </section>
     </>
   );

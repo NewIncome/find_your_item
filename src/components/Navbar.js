@@ -60,7 +60,7 @@ Navbar.propTypes = {
   icon: PropTypes.string,
   error: PropTypes.string,
   onClick: PropTypes.func,
-  fvlReady: PropTypes.string,
+  fvlReady: PropTypes.bool,
 };
 
 export default Navbar;
