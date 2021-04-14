@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import {
+  Button, Colors, Inline, Pagination, PaginationItem,
+  PaginationPrevious, PaginationNext, PaginationEllipsis,
+} from 'react-foundation';
+import Slider from 'react-slick';
 import Error from '../components/Error';
 import Loader from '../components/Loader';
 import * as MyActions from '../actions';
@@ -86,6 +91,52 @@ const Home = props => {
                 ) : ''}
             </>
           )}
+        <br />
+        <Button color={Colors.SUCCESS}>Submit</Button>
+        {/* eslint-disable jsx-a11y/anchor-is-valid */}
+        <div className="pagination-basics-example">
+          <Pagination aria-label="Pagination">
+            <PaginationPrevious isDisabled>Previous <Inline showForSr>page</Inline>
+            </PaginationPrevious>
+            <PaginationItem isCurrent>
+              <Inline showForSr>You&apos;re on page</Inline> 1
+            </PaginationItem>
+            <PaginationItem><a aria-label="Page 2">2</a></PaginationItem>
+            <PaginationItem><a aria-label="Page 3">3</a></PaginationItem>
+            <PaginationItem><a aria-label="Page 4">4</a></PaginationItem>
+            <PaginationEllipsis />
+            <PaginationItem><a aria-label="Page 12">12</a></PaginationItem>
+            <PaginationItem><a aria-label="Page 13">13</a></PaginationItem>
+            <PaginationNext><a aria-label="Next page">Next <Inline showForSr>page</Inline></a></PaginationNext>
+          </Pagination>
+        </div>
+        <Slider
+          dots
+          infinite={false}
+          speed={500}
+          slidesToShow={3}
+          slidesToScroll={1}
+          pauseOnFocus
+        >
+          <div>
+            <h3>1</h3>
+          </div>
+          <div>
+            <h3>2</h3>
+          </div>
+          <div>
+            <h3>3</h3>
+          </div>
+          <div>
+            <h3>4</h3>
+          </div>
+          <div>
+            <h3>5</h3>
+          </div>
+          <div>
+            <h3>6</h3>
+          </div>
+        </Slider>
       </section>
     </>
   );

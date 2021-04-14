@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import faker from 'faker';
 import PropTypes from 'prop-types';
 import Item from '../components/Item';
 import Navbar from '../components/Navbar';
