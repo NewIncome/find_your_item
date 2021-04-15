@@ -6,6 +6,7 @@ const Navbar = props => {
   const {
     backDir,
     icon,
+    title,
     error,
     onClick,
     fvlReady,
@@ -36,7 +37,7 @@ const Navbar = props => {
             )
         }
       </div>
-      <span className="title h">Navbar</span>
+      <span className="title h">{title || 'Navbar'}</span>
       {backDir === '/items'
         ? <button className="edit" onClick={onClick} type="button">✎</button>
         : fvlReady
@@ -50,6 +51,7 @@ const Navbar = props => {
 Navbar.defaultProps = {
   backDir: '',
   icon: '',
+  title: '',
   error: '',
   onClick: () => {},
   fvlReady: false,
@@ -58,6 +60,7 @@ Navbar.defaultProps = {
 Navbar.propTypes = {
   backDir: PropTypes.string,
   icon: PropTypes.string,
+  title: PropTypes.string,
   error: PropTypes.string,
   onClick: PropTypes.func,
   fvlReady: PropTypes.bool,
