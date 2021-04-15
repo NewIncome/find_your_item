@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import Slider from 'react-slick';
 import Error from '../components/Error';
 import Loader from '../components/Loader';
 import * as MyActions from '../actions';
@@ -88,32 +87,6 @@ const Home = props => {
             </>
           )}
         <br />
-        <Slider
-          dots={false}
-          infinite
-          speed={500}
-          slidesToShow={2}
-          slidesToScroll={1}
-        >
-          <div>
-            <h3>1</h3>
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
-        </Slider>
       </section>
     </>
   );

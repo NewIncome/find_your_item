@@ -1,5 +1,5 @@
 @import 'styles/loader', 'styles/navbar', 'styles/home';
-@import 'styles/userInfo';
+@import 'styles/userInfo', 'styles/items';
 
 * {
   box-sizing: border-box;
@@ -11,7 +11,7 @@
 .h { font-family: Verdana, Geneva, sans-serif; }
 .p { font-family: Cordia-New, sans-serif; }
 
-.a {
+a {
   color: #222;
   text-decoration: none;
 }

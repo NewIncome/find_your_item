@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const Loading = props => {
   const { style } = props;
-  console.log(style);
 
   return (
     <div className="loader" style={style || ''}>
@@ -15,7 +14,7 @@ const Loading = props => {
         <path id="steamR" d="M21 6C21 6 21 8.22727 19 9.5C17 10.7727 17 13 17 13" stroke="var(--secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
 
-      <div className="ld-text-container" style={style ? { color: style.color, 'margin-top': style.mt } : ''}>
+      <div className="ld-text-container" style={style ? { color: style.color, marginTop: style.mt } : ''}>
         <p className="loader--text" />
         Loading
         <span className="txt-dots" />
