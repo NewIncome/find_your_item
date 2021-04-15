@@ -15,11 +15,13 @@ const Items = props => {
   useEffect(() => {
     setCurItmId(getItemID(currItemDiv('slick-active')));
 
-    const slider = currItemDiv('slick-slider');
-    slider.addEventListener('click', () => {
-      setTimeout(() => {
-        setCurItmId(getItemID(currItemDiv('slick-active')));
-      }, 50);
+    const slider = document.querySelectorAll('.slick-arrow');
+    slider.forEach(domItm => {
+      domItm.addEventListener('click', () => {
+        setTimeout(() => {
+          setCurItmId(getItemID(currItemDiv('slick-active')));
+        }, 50);
+      });
     });
   }, []);
 
