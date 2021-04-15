@@ -12,4 +12,44 @@
     color: #a84a1cad !important;
     z-index: 1;
   }
+
+  .Items-info {
+    background: #fff;
+    margin: 20px auto 0;
+    overflow: hidden;
+    width: 90%;
+
+    .info-details {
+      display: flex;
+      height: 80px;
+
+      .dtls {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+      }
+      .dtl-left {
+        align-items: flex-start;
+        padding: 4px 0 0 12px;
+
+        .stars { color: #f7b900; }
+      }
+
+      .dtl-right {
+        align-items: end;
+        padding: 4px 12px 0 0;
+
+        .d-r-d {
+          color: #666;
+          padding-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+.itm-cnt {
+  font-size: 1.1em;
+  margin-top: 20px;
 }

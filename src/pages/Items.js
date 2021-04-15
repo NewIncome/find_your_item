@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars, no-undef */
+/* eslint-disable react/jsx-one-expression-per-line */
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -6,32 +6,32 @@ import Slider from 'react-slick';
 import PropTypes from 'prop-types';
 import Item from '../components/Item';
 import Navbar from '../components/Navbar';
-import { currItemDiv, getItemID, curItemName } from '../utils';
+import { currItemDiv, getItemID } from '../utils';
 
 const Items = props => {
   const { items } = props;
-  const [currItmName, setCurrItmName] = useState();
+  const [curItmId, setCurItmId] = useState();
 
   useEffect(() => {
-    setCurrItmName(curItemName(items, getItemID(currItemDiv('slick-active'))));
+    setCurItmId(getItemID(currItemDiv('slick-active')));
+
     const slider = currItemDiv('slick-slider');
     slider.addEventListener('click', () => {
       setTimeout(() => {
-        setCurrItmName(curItemName(items, getItemID(currItemDiv('slick-active'))));
+        setCurItmId(getItemID(currItemDiv('slick-active')));
         console.log('clicked slider');
       }, 50);
     });
   }, []);
 
   useEffect(() => {
-    console.log('Set Name: ', currItmName);
-  }, [currItmName]);
+    console.log('Set ID: ', curItmId);
+  }, [curItmId]);
 
   return (
     <>
-      <Navbar backDir="/user" title={currItmName} />
+      <Navbar backDir="/user" title="Items List" />
       <section className="section" id="Items">
-        <h2>Items List</h2>
         <Slider
           dots={false}
           infinite
@@ -41,10 +41,13 @@ const Items = props => {
         >
           {items.map(item => (
             <Link to={`/item/${item.id}`} key={`${item.id}-${item.name}`}>
-              <Item item={item} />
+              <Item item={item} pg="all" />
             </Link>
           ))}
         </Slider>
+        <div className="itm-cnt">
+          <span>{curItmId}</span> / <span>{items.length}</span>
+        </div>
       </section>
     </>
   );
