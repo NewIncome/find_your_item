@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import Navbar from '../components/Navbar';
 import Loader from '../components/Loader';
 import * as MyActions from '../actions';
+import { toDateTime } from '../utils';
 
 const UserInfo = props => {
   const {
@@ -67,7 +68,7 @@ const UserInfo = props => {
               <li key={key} className="user-li">
                 {key.toUpperCase()}
                 :
-                <span className="user-detail">{user[key]}</span>
+                <span className="user-detail">{toDateTime(user[key])}</span>
               </li>
             ))
               : 'Waiting or Not Found'
@@ -75,7 +76,7 @@ const UserInfo = props => {
         </ul>
         {fetchCall.loading || !items[0] || favList[0] === null
           ? (
-            <div className="btm-link h" style={{ padding: '5px' }}><Loader style={{ 'margin-top': '0px', color: '#eee', mt: '-15px' }} /></div>
+            <div className="btm-link h" style={{ padding: '5px' }}><Loader style={{ marginTop: '0px', color: '#eee', mt: '-15px' }} /></div>
           )
           : (
             <Link to="/items" className="btm-link h">Item&apos;s List</Link>
