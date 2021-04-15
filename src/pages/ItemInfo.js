@@ -12,10 +12,11 @@ const ItemInfo = props => {
 
   return (
     <>
-      <Navbar backDir="/items" />
+      <Navbar backDir="/items" title={item.name} />
       <div className="Item-info">
         {item ? <Item item={item} /> : <Redirect to="/error" />}
       </div>
+      <div className="btm-link h" style={{ padding: '30px' }}>Add to Favorites</div>
     </>
   );
 };

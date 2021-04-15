@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { randNum } from '../utils';
+import { toDateTime, randNum } from '../utils';
 
 const Item = props => {
-  const { item, pg } = props;
+  const { item, pg, price } = props;
 
   return (
     <>
@@ -30,24 +30,27 @@ const Item = props => {
         )
         : (
           <div className="Items-info">
-            <h3 className="Items-name">{item.name}</h3>
-            <img
-              className="Items-image"
-              src={item.image}
-              alt={item.name}
-            />
-            <p className="Items-description">{item.description}</p>
-            {item.id
-              ? (
-                <div>
-                  <p>{item.id}</p>
-                  <div>
-                    <p>{item.created_at}</p>
-                    <p>{item.updated_at}</p>
-                  </div>
+            <div className="image-frame">
+              <img
+                className="Items-image"
+                src={item.image}
+                alt={item.name}
+              />
+              <div className="img-info">
+                <div className="dtl-left  dtls">
+                  <p className="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
+                  <p className="itm-name">{toDateTime(item.created_at)}</p>
                 </div>
-              )
-              : ''}
+                <div className="dtl-right dtls">
+                  <p className="d-r-u">${price || 1000}</p>
+                  <p className="d-r-d">Price</p>
+                </div>
+              </div>
+            </div>
+            <div className="image-desc">
+              <p className="desc-title">About this item</p>
+              <p className="desc-description">{item.description}</p>
+            </div>
           </div>
         )}
     </>
@@ -56,11 +59,13 @@ const Item = props => {
 
 Item.defaultProps = {
   pg: '',
+  price: '',
 };
 
 Item.propTypes = {
   item: PropTypes.objectOf(PropTypes.any).isRequired,
   pg: PropTypes.string,
+  price: PropTypes.string,
 };
 
 export default Item;
