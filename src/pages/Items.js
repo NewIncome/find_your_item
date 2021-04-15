@@ -19,13 +19,11 @@ const Items = props => {
     slider.addEventListener('click', () => {
       setTimeout(() => {
         setCurItmId(getItemID(currItemDiv('slick-active')));
-        console.log('clicked slider');
       }, 50);
     });
   }, []);
 
   useEffect(() => {
-    console.log('Set ID: ', curItmId);
   }, [curItmId]);
 
   return (
