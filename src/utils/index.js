@@ -11,6 +11,8 @@ const toDateTime = dt => {
   return dt;
 };
 
+const randNum = (min, max) => Math.floor(Math.random() * (max - min) + min);
+
 export {
-  currItemDiv, getItemID, curItemName, toDateTime,
+  currItemDiv, getItemID, curItemName, toDateTime, randNum,
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { randNum } from '../utils';
 
 const Item = props => {
   const { item, pg } = props;
@@ -20,7 +21,8 @@ const Item = props => {
                 <p className="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
               </div>
               <div className="dtl-right dtls">
-                <p className="d-r-u">$3,600</p>
+                {/* eslint-disable react/jsx-one-expression-per-line */}
+                <p className="d-r-u">${randNum(1000, 50000).toLocaleString('en')}</p>
                 <p className="d-r-d">Price</p>
               </div>
             </div>
