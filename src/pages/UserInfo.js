@@ -76,7 +76,7 @@ const UserInfo = props => {
         </ul>
         {fetchCall.loading || !items[0] || favList[0] === null
           ? (
-            <div className="btm-link h" style={{ padding: '5px' }}><Loader style={{ marginTop: '0px', color: '#eee', mt: '-15px' }} /></div>
+            <div className="btm-link h" style={{ padding: '5px' }}><Loader style={{ marginTop: '0px', color: '#eee', mt: '-15px' }} op="op" /></div>
           )
           : (
             <Link to="/items" className="btm-link h">Item&apos;s List</Link>
