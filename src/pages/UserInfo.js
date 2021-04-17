@@ -56,7 +56,7 @@ const UserInfo = props => {
 
   return (
     <>
-      <Navbar icon="☜" onClick={onClick} rightLnk={rightLnk} fvlReady={apiFlag.fvl} />
+      <Navbar icon="☜" onClick={onClick} rightLnk={rightLnk} fvlReady={apiFlag.fvl} title="User Info" />
       <section className="userInfo-section" id="User">
         <h2 className="user-h h">
           {user.name.toUpperCase().concat("'s ")}

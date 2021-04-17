@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Item from '../components/Item';
+import ImgSlider from '../components/ImgSlider';
 
 const ListFilter = props => {
   const { items, favList } = props;
@@ -11,9 +11,7 @@ const ListFilter = props => {
   return (
     <div className="favorite-items">
       {favList.length > 0
-        ? favItemsList.map(item => (
-          <Item item={item} key={item.name.concat(item.id)} />
-        ))
+        ? <ImgSlider items={favItemsList} />
         : (
           <div className="announce">
             You haven&apos;t added any Items to your favorites list

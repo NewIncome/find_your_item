@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, Redirect, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Navbar from '../components/Navbar';
 import Item from '../components/Item';
@@ -8,11 +8,15 @@ import Item from '../components/Item';
 const ItemInfo = props => {
   const { items } = props;
   const { id } = useParams();
+  const history = useHistory();
+
   const item = items.find(itm => itm.id === Number(id)) || null;
+
+  const onClick = () => history.goBack();
 
   return (
     <>
-      <Navbar backDir="/items" title={item.name} />
+      <Navbar error="yup" onClick={onClick} title={item.name} />
       <div className="Item-info">
         {item ? <Item item={item} /> : <Redirect to="/error" />}
       </div>

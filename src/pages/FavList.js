@@ -7,17 +7,13 @@ import ListFilter from '../containers/ListFilter';
 
 const FavList = props => {
   const {
-    items, fetchCall, user, favList,
+    items, fetchCall, favList,
   } = props;
 
   return (
     <>
-      <Navbar backDir="/user" />
+      <Navbar backDir="/user" title="Favorites List" />
       <section className="section" id="FavList">
-        <h2>
-          {user.name.toUpperCase()}
-          &apos;s Favorites List
-        </h2>
         {fetchCall.loading
           ? <Loader />
           : <ListFilter items={items} favList={favList[0] ? favList.map(itm => itm.id) : []} />}
@@ -27,16 +23,15 @@ const FavList = props => {
 };
 
 FavList.propTypes = {
-  user: PropTypes.objectOf(PropTypes.any).isRequired,
   items: PropTypes.arrayOf(PropTypes.any).isRequired,
   favList: PropTypes.arrayOf(PropTypes.any).isRequired,
   fetchCall: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 const mapStateToProps = ({
-  favList, user, items, fetchCall,
+  favList, items, fetchCall,
 }) => ({
-  favList, user, items, fetchCall,
+  favList, items, fetchCall,
 });
 
 export default connect(mapStateToProps)(FavList);
