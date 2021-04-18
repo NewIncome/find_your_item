@@ -24,7 +24,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
+    "test-renew": "jest --updateSnapshot",
     "eject": "react-scripts eject",
     "eslint": "npx eslint .",
     "eslint-fix": "npx eslint . --fix",
