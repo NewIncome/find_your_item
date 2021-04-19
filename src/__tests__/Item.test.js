@@ -18,8 +18,8 @@ describe('Item component', () => {
   });
 
   test("has a 'price' prop", () => {
-    const tree = renderer.create(<Item item={item} price={135} />).root;
-    expect(tree.findByType(Item).props.price).toBe(135);
+    const tree = renderer.create(<Item item={item} price={'135'} />).root;
+    expect(tree.findByType(Item).props.price).toBe('135');
   });
 
   test("has an 'items' prop", () => {
