@@ -8,24 +8,24 @@ import * as MyActions from '../actions';
 
 const FavBttn = props => {
   const {
-    currItmID, favList, fetchCall,
+    currItmID, favList, fetchCall, user,
   } = props;
   const [isFav, setIsFav] = useState(false);
 
-  const favAddLink = '';
-  const favDelLink = '';
+  const favAddLink = `https://findmyitem-api.herokuapp.com/users/${user.id}/favorites_lists`; // POST
+  const favDelLink = listItmId => `https://findmyitem-api.herokuapp.com/users/${user.id}/favorites_lists/${listItmId}`; // DELETE
 
   const checkIfFav = () => (favList[0]
-    ? favList.map(itm => itm.id).includes(currItmID)
+    ? favList.map(itm => itm.item_id).includes(currItmID)
     : false);
 
   useEffect(() => {
     setIsFav(checkIfFav());
-    console.log('At FavBttn, isFav & checkIfFav & favList');
-    console.log(isFav);
-    console.log(checkIfFav());
-    console.log(currItmID);
-    console.log(favList);
+    // console.log('At FavBttn, isFav & checkIfFav & favList');
+    // console.log(isFav);
+    // console.log(checkIfFav());
+    // console.log(currItmID);
+    // console.log(favList);
   }, [currItmID]);
 
   const like = () => {
@@ -79,12 +79,13 @@ FavBttn.propTypes = {
   currItmID: PropTypes.number,
   favList: PropTypes.arrayOf(PropTypes.any).isRequired,
   fetchCall: PropTypes.objectOf(PropTypes.any).isRequired,
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 const mapStateToProps = ({
-  favList, fetchCall,
+  favList, fetchCall, user,
 }) => ({
-  favList, fetchCall,
+  favList, fetchCall, user,
 });
 
 function mapActionsToProps(dispatch) {
