@@ -6,20 +6,19 @@ import Item from './Item';
 import { currItemDiv, getItemID, randNum } from '../utils';
 
 const ImgSlider = props => {
-  const { items } = props;
-  const [curItmId, setCurItmId] = useState();
+  const { items, getCurItmID } = props;
+  const [curItmIndx, setCurItmIndx] = useState();
 
   useEffect(() => {
-    setCurItmId(getItemID(currItemDiv('slick-active')));
+    setCurItmIndx(getItemID(currItemDiv('slick-active')));
 
     const slides = document.querySelectorAll('.slick-track');
     slides.forEach(domItm => {
-      domItm.addEventListener('transitionend', () => setCurItmId(getItemID(currItemDiv('slick-active'))));
+      domItm.addEventListener('transitionend', () => setCurItmIndx(getItemID(currItemDiv('slick-active'))));
     });
   }, []);
 
-  useEffect(() => {
-  }, [curItmId]);
+  useEffect(() => getCurItmID(items[curItmIndx - 1].id), [curItmIndx]);
 
   // SNIPPET TO SEE A LIST OF available EVENT-LISTENER-EVENTS
   // ALSO TELLS YOU THE TARGET ELEMENT FOR/OF THE EVENT !!!!!
@@ -52,7 +51,7 @@ const ImgSlider = props => {
       </Slider>
       <div className="itm-cnt">
         {/* eslint-disable react/jsx-one-expression-per-line */}
-        <span>{curItmId}</span> / <span>{items.length}</span>
+        <span>{curItmIndx}</span> / <span>{items.length}</span>
       </div>
     </>
   );
@@ -60,6 +59,7 @@ const ImgSlider = props => {
 
 ImgSlider.propTypes = {
   items: PropTypes.arrayOf(PropTypes.any).isRequired,
+  getCurItmID: PropTypes.func.isRequired,
 };
 
 export default ImgSlider;

@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import ImgSlider from '../components/ImgSlider';
 
 const ListFilter = props => {
-  const { items, favList } = props;
+  const { items, favList, getCurItmID } = props;
 
   const favItemsList = items.filter(itm => favList.includes(itm.id));
 
   return (
     <div className="favorite-items">
       {favList.length > 0
-        ? <ImgSlider items={favItemsList} />
+        ? <ImgSlider items={favItemsList} getCurItmID={getCurItmID} />
         : (
           <div className="announce">
             You haven&apos;t added any Items to your favorites list
@@ -29,6 +29,7 @@ const ListFilter = props => {
 ListFilter.propTypes = {
   items: PropTypes.arrayOf(PropTypes.any).isRequired,
   favList: PropTypes.arrayOf(PropTypes.any).isRequired,
+  getCurItmID: PropTypes.func.isRequired,
 };
 
 export default ListFilter;
