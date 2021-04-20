@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
@@ -6,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Navbar from '../components/Navbar';
 import Loader from '../components/Loader';
+import GetItemsNFavlist from '../components/GetItemsNFavlist';
 import * as MyActions from '../actions';
 import { toDateTime } from '../utils';
 
@@ -15,28 +15,6 @@ const UserInfo = props => {
   } = props;
   const [apiFlag, setApiFlag] = useState({ itm: false, fvl: false });
   const { history } = useHistory();
-
-  const itemsUrl = 'https://findmyitem-api.herokuapp.com/items';
-  const favListUrl = `https://findmyitem-api.herokuapp.com/users/${user.id}/favorites_lists`;
-
-  useEffect(() => {
-    if (!items[0]) actions.fetchAPIcall(itemsUrl, 'get', {});
-  }, []);
-
-  useEffect(() => {
-    if (!fetchCall.apiData && items[0]) {
-      actions.fetchAPIcall(favListUrl, 'get', {});
-      setApiFlag({ itm: true, fvl: false });
-    }
-  }, [items]);
-
-  useEffect(() => {
-    if (fetchCall.apiData && !items[0] && !favList[0]) {
-      actions.setItems(fetchCall.apiData);
-      actions.fetchAPIreset();
-    }
-    if (apiFlag.itm && fetchCall.apiData && !favList[0]) actions.setFavList(fetchCall.apiData);
-  });
 
   useEffect(() => {
     if (favList[0]) {
@@ -56,6 +34,7 @@ const UserInfo = props => {
 
   return (
     <>
+      <GetItemsNFavlist />
       <Navbar icon="☜" onClick={onClick} rightLnk={rightLnk} fvlReady={apiFlag.fvl} title="User Info" />
       <section className="userInfo-section" id="User">
         <h2 className="user-h h">
