@@ -18,7 +18,9 @@ const ImgSlider = props => {
     });
   }, []);
 
-  useEffect(() => getCurItmID(items[curItmIndx - 1].id), [curItmIndx]);
+  useEffect(() => {
+    if (curItmIndx) getCurItmID(items[curItmIndx - 1].id);
+  }, [curItmIndx]);
 
   // SNIPPET TO SEE A LIST OF available EVENT-LISTENER-EVENTS
   // ALSO TELLS YOU THE TARGET ELEMENT FOR/OF THE EVENT !!!!!
