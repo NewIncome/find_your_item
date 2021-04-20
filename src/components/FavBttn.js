@@ -7,26 +7,29 @@ import * as MyActions from '../actions';
 const FavBttn = props => {
   const { isFav, items, favList } = props;
 
-  const like = () => {}
+  const like = () => {};
 
   return (
     <>
-    {isFav
-      ? <buttton
-        className=""
-        type="button"
-        onClick={unlike}
-      >
-        &#9829;
-      </buttton>
-      : <buttton
-          className=""
-          type="button"
-          onClick={like}
-        >
-          &#9825;
-        </buttton>
-    }
+      {isFav
+        ? (
+          <buttton
+            className=""
+            type="button"
+            onClick={unlike}
+          >
+            &#9829;
+          </buttton>
+        )
+        : (
+          <buttton
+            className=""
+            type="button"
+            onClick={like}
+          >
+            &#9825;
+          </buttton>
+        )}
     </>
   );
 };

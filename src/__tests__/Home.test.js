@@ -13,7 +13,7 @@ const state = {
     name: 'Dummy User',
     updated_at: '2020-02-20T00:20:20.824Z',
   },
-  fetchCall: {loading: false, error: null, apiData: null},
+  fetchCall: { loading: false, error: null, apiData: null },
 };
 
 const mockStore = configureStore([]);
@@ -23,12 +23,12 @@ describe('My connected Home component', () => {
   let component;
 
   beforeEach(() => {
-    store = mockStore({...state});
+    store = mockStore({ ...state });
 
     component = renderer.create(
       <Provider store={store}>
         <Home />
-      </Provider>
+      </Provider>,
     );
   });
 

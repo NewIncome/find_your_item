@@ -9,7 +9,7 @@ const item = {
   description: 'item description',
   created_at: '2021-12-02',
   updated_at: '2021-12-02',
-}
+};
 
 describe('Item component', () => {
   test('is displayed correctly', () => {
@@ -18,7 +18,7 @@ describe('Item component', () => {
   });
 
   test("has a 'price' prop", () => {
-    const tree = renderer.create(<Item item={item} price={'135'} />).root;
+    const tree = renderer.create(<Item item={item} price="135" />).root;
     expect(tree.findByType(Item).props.price).toBe('135');
   });
 
@@ -28,7 +28,7 @@ describe('Item component', () => {
   });
 
   test('has an h3 element', () => {
-    const tree = renderer.create(<Item item={item} pg='' />).root;
+    const tree = renderer.create(<Item item={item} pg="" />).root;
     expect(tree.findByProps({ className: 'itm-name' }).children).toEqual([`${item.created_at} `]);
   });
 
