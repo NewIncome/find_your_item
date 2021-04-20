@@ -6,7 +6,7 @@ import ImgSlider from '../components/ImgSlider';
 const ListFilter = props => {
   const { items, favList, getCurItmID } = props;
 
-  const favItemsList = items.filter(itm => favList.includes(itm.id));
+  const favItemsList = favList.map(itmId => items.find(itm => itm.id === itmId));
 
   return (
     <div className="favorite-items">

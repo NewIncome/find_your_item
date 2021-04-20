@@ -25,7 +25,7 @@ const FavList = props => {
           : (
             <ListFilter
               items={items}
-              favList={favList[0] ? favList.map(itm => itm.id) : []}
+              favList={favList[0] ? favList.map(favLi => favLi.item_id) : []}
               getCurItmID={getCurItmID}
             />
           )}
