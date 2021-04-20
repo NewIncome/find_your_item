@@ -12,18 +12,24 @@ const ImgSlider = props => {
   useEffect(() => {
     setCurItmId(getItemID(currItemDiv('slick-active')));
 
-    const slider = document.querySelectorAll('.slick-arrow');
-    slider.forEach(domItm => {
-      domItm.addEventListener('click', () => {
-        setTimeout(() => {
-          setCurItmId(getItemID(currItemDiv('slick-active')));
-        }, 50);
-      });
+    const slides = document.querySelectorAll('.slick-track');
+    slides.forEach(domItm => {
+      domItm.addEventListener('transitionend', () => setCurItmId(getItemID(currItemDiv('slick-active'))));
     });
   }, []);
 
   useEffect(() => {
   }, [curItmId]);
+
+  // SNIPPET TO SEE A LIST OF available EVENT-LISTENER-EVENTS
+  // ALSO TELLS YOU THE TARGET ELEMENT FOR/OF THE EVENT !!!!!
+  // Object.keys(window).forEach(key => {
+  //   if (/^on/.test(key) {
+  //     window.addEventListener(key.slice(2), event => {
+  //       console.log(event);
+  //     });
+  //   }
+  // });
 
   return (
     <>
