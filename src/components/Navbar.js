@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import FavBttn from './FavBttn';
 
 const Navbar = props => {
   const {
@@ -9,8 +10,27 @@ const Navbar = props => {
     title,
     error,
     onClick,
+    rbc,
     fvlReady,
+    itmId,
   } = props;
+  const location = useLocation();
+
+  const addRightBttnFunc = () => {
+    console.log(location.pathname);
+    switch (location.pathname) {
+      case '/items':
+        return (<FavBttn currItmID={itmId} />);
+      case '/fav_list':
+        return (<FavBttn currItmID={itmId} />);
+      case '/user':
+        return (fvlReady
+          ? <Link to="/fav_list" className="like a">Fav&apos;s List</Link>
+          : <div className="like a">Fav&apos;s List</div>);
+      default:
+        return (<button className="edit" onClick={rbc} type="button">✎</button>);
+    }
+  };
 
   return (
     <nav className="Navbar">
@@ -38,11 +58,7 @@ const Navbar = props => {
         }
       </div>
       <span className="title h">{title || 'Navbar'}</span>
-      {backDir === '/items'
-        ? <button className="edit" onClick={onClick} type="button">✎</button>
-        : fvlReady
-          ? <Link to="/fav_list" className="like a">Fav&apos;s List</Link>
-          : <div className="like a">Fav&apos;s List</div>}
+      {addRightBttnFunc()}
     </nav>
     // ≡ ☌
   );
@@ -54,7 +70,9 @@ Navbar.defaultProps = {
   title: '',
   error: '',
   onClick: () => {},
+  rbc: () => {},
   fvlReady: false,
+  itmId: 0,
 };
 
 Navbar.propTypes = {
@@ -63,7 +81,9 @@ Navbar.propTypes = {
   title: PropTypes.string,
   error: PropTypes.string,
   onClick: PropTypes.func,
+  rbc: PropTypes.func,
   fvlReady: PropTypes.bool,
+  itmId: PropTypes.number,
 };
 
 export default Navbar;

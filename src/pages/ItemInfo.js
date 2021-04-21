@@ -14,9 +14,11 @@ const ItemInfo = props => {
 
   const onClick = () => history.goBack();
 
+  const rightBtnClick = () => {};
+
   return (
     <>
-      <Navbar error="yup" onClick={onClick} title={item.name} />
+      <Navbar error="yup" onClick={onClick} title={item.name} rbc={rightBtnClick} />
       <div className="Item-info">
         {item ? <Item item={item} /> : <Redirect to="/error" />}
       </div>

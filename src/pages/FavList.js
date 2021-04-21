@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Navbar from '../components/Navbar';
 import Loader from '../components/Loader';
 import ListFilter from '../containers/ListFilter';
-import FavBttn from '../components/FavBttn';
 
 const FavList = props => {
   const {
@@ -18,7 +17,7 @@ const FavList = props => {
 
   return (
     <>
-      <Navbar backDir="/user" title="Favorites List" />
+      <Navbar backDir="/user" title="Favorites List" itmId={curItemID} />
       <section className="section" id="FavList">
         {fetchCall.loading
           ? <Loader />
@@ -30,7 +29,6 @@ const FavList = props => {
             />
           )}
       </section>
-      <FavBttn currItmID={curItemID} />
     </>
   );
 };
