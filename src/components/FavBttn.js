@@ -36,22 +36,22 @@ const FavBttn = props => {
   useEffect(() => actions.fetchAPIreset(), []);
 
   useEffect(() => {
-    if (fetchCall.apiData) {
-      console.log('Finished API call, and got: ');
-      console.log(fetchCall.wholeResp);
-      actions.fetchAPIreset();
-      setIsFav(!isFav);
+    if (fetchCall.wholeResp) {
+      if (fetchCall.wholeResp.status === '201') {
+        console.log('Liked an Item');
+        console.log(fetchCall);
+        actions.fetchAPIreset();
+        setIsFav(!isFav);
+      } else if (fetchCall.wholeResp.status === '204') {
+        console.log('Unliked an Item');
+        console.log(fetchCall);
+        actions.fetchAPIreset();
+        setIsFav(!isFav);
+      }
     }
   });
 
-  useEffect(() => {
-    setIsFav(checkIfFav());
-    console.log('At FavBttn, isFav & checkIfFav & favList');
-    console.log(isFav);
-    console.log(checkIfFav());
-    console.log(currItmID);
-    console.log(favList);
-  }, [currItmID]);
+  useEffect(() => setIsFav(checkIfFav()), [currItmID]);
 
   /* Mechanics
   1- if exists in FavList display 'to-unlike' Bttn
