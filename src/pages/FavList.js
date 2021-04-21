@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Navbar from '../components/Navbar';
+import Navbar from '../containers/Navbar';
 import Loader from '../components/Loader';
 import ListFilter from '../containers/ListFilter';
 

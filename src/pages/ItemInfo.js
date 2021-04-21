@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useParams, Redirect, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Navbar from '../components/Navbar';
+import Navbar from '../containers/Navbar';
 import Item from '../components/Item';
 
 const ItemInfo = props => {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import Navbar from '../components/Navbar';
+import Navbar from '../containers/Navbar';
 import Loader from '../components/Loader';
 import GetItemsNFavlist from '../components/GetItemsNFavlist';
 import * as MyActions from '../actions';
