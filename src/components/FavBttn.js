@@ -8,7 +8,7 @@ import * as MyActions from '../actions';
 
 const FavBttn = props => {
   const {
-    currItmID, favList, fetchCall, actions, user,
+    currItmID, favList, fetchCall, actions, user, orange,
   } = props;
   const [isFav, setIsFav] = useState(false);
 
@@ -67,24 +67,39 @@ const FavBttn = props => {
   return (
     <>
       <GetItemsNFavlist />
-      {isFav
+      {orange
         ? (
           <button
-            className="to-unlike"
+            className="btm-link h"
+            style={{ padding: '30px' }}
             type="button"
-            onClick={unlike}
+            onClick={isFav ? unlike : like}
           >
-            &#9829;
+            {isFav ? 'Remove from Favorites' : 'Add to Favorites'}
           </button>
         )
         : (
-          <button
-            className="to-like"
-            type="button"
-            onClick={like}
-          >
-            &#9825;
-          </button>
+          <>
+            {isFav
+              ? (
+                <button
+                  className="to-unlike"
+                  type="button"
+                  onClick={unlike}
+                >
+                  &#9829;
+                </button>
+              )
+              : (
+                <button
+                  className="to-like"
+                  type="button"
+                  onClick={like}
+                >
+                  &#9825;
+                </button>
+              )}
+          </>
         )}
     </>
   );
@@ -92,6 +107,7 @@ const FavBttn = props => {
 
 FavBttn.defaultProps = {
   currItmID: 0,
+  orange: false,
 };
 
 FavBttn.propTypes = {
@@ -100,6 +116,7 @@ FavBttn.propTypes = {
   fetchCall: PropTypes.objectOf(PropTypes.any).isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
   actions: PropTypes.objectOf(PropTypes.any).isRequired,
+  orange: PropTypes.bool,
 };
 
 const mapStateToProps = ({

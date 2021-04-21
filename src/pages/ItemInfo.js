@@ -4,6 +4,7 @@ import { useParams, Redirect, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Navbar from '../containers/Navbar';
 import Item from '../components/Item';
+import FavBttn from '../components/FavBttn';
 
 const ItemInfo = props => {
   const { items } = props;
@@ -22,7 +23,7 @@ const ItemInfo = props => {
       <div className="Item-info">
         {item ? <Item item={item} /> : <Redirect to="/error" />}
       </div>
-      <div className="btm-link h" style={{ padding: '30px' }}>Add to Favorites</div>
+      <FavBttn currItmID={item.id} orange />
     </>
   );
 };
