@@ -17,7 +17,6 @@ const Navbar = props => {
   const location = useLocation();
 
   const addRightBttnFunc = () => {
-    console.log(location.pathname);
     switch (location.pathname) {
       case '/items':
         return (<FavBttn currItmID={itmId} />);
