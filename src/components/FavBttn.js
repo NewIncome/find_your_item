@@ -20,14 +20,14 @@ const FavBttn = props => {
 
   const like = () => {
     // make API call
-    actions.fetchAPIcall(favAddDelLink, 'POST', { item_id: currItmID });
+    actions.fetchAPIcall(favAddDelLink, 'post', { item_id: currItmID });
     // wait until API call is done
     // when done, I get the new list-element back ; response 201
     // edit ISFAV... & FAVLIST should be updated (Check!)
   };
 
   const unlike = () => {
-    actions.fetchAPIcall(favAddDelLink, 'DELETE', { item_id: currItmID });
+    actions.fetchAPIcall(favAddDelLink, 'delete', { item_id: currItmID });
     // wait until API call is done
     // when done, I get nothing ; response 204
     // edit ISFAV... & FAVLIST should be updated (Check!)
@@ -38,13 +38,9 @@ const FavBttn = props => {
   useEffect(() => {
     if (fetchCall.wholeResp) {
       if (fetchCall.wholeResp.status === '201') {
-        console.log('Liked an Item');
-        console.log(fetchCall);
         actions.fetchAPIreset();
         setIsFav(!isFav);
       } else if (fetchCall.wholeResp.status === '204') {
-        console.log('Unliked an Item');
-        console.log(fetchCall);
         actions.fetchAPIreset();
         setIsFav(!isFav);
       }
