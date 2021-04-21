@@ -2,6 +2,7 @@ const initState = {
   loading: false,
   error: null,
   apiData: null,
+  wholeResp: null,
 };
 
 const fetchAPIcallReducer = (state = initState, action) => {
@@ -30,6 +31,13 @@ const fetchAPIcallReducer = (state = initState, action) => {
         loading: false,
         apiData: null,
         error: null,
+        wholeResp: null,
+      };
+    case 'FETCH_API_SUCCESS_RESP':
+      return {
+        ...state,
+        loading: false,
+        wholeResp: action.payload,
       };
     default:
       return state;

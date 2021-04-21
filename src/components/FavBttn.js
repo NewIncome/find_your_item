@@ -8,31 +8,50 @@ import * as MyActions from '../actions';
 
 const FavBttn = props => {
   const {
-    currItmID, favList, fetchCall, user,
+    currItmID, favList, fetchCall, actions, user,
   } = props;
   const [isFav, setIsFav] = useState(false);
 
-  const favAddLink = `https://findmyitem-api.herokuapp.com/users/${user.id}/favorites_lists`; // POST
-  const favDelLink = listItmId => `https://findmyitem-api.herokuapp.com/users/${user.id}/favorites_lists/${listItmId}`; // DELETE
+  const favAddDelLink = `https://findmyitem-api.herokuapp.com/users/${user.id}/favorites_lists`;
 
   const checkIfFav = () => (favList[0]
     ? favList.map(itm => itm.item_id).includes(currItmID)
     : false);
 
-  useEffect(() => {
-    setIsFav(checkIfFav());
-    // console.log('At FavBttn, isFav & checkIfFav & favList');
-    // console.log(isFav);
-    // console.log(checkIfFav());
-    // console.log(currItmID);
-    // console.log(favList);
-  }, [currItmID]);
-
   const like = () => {
+    // make API call
+    actions.fetchAPIcall(favAddDelLink, 'POST', { item_id: currItmID });
+    // wait until API call is done
+    // when done, I get the new list-element back ; response 201
+    // edit ISFAV... & FAVLIST should be updated (Check!)
   };
 
   const unlike = () => {
+    actions.fetchAPIcall(favAddDelLink, 'DELETE', { item_id: currItmID });
+    // wait until API call is done
+    // when done, I get nothing ; response 204
+    // edit ISFAV... & FAVLIST should be updated (Check!)
   };
+
+  useEffect(() => actions.fetchAPIreset(), []);
+
+  useEffect(() => {
+    if (fetchCall.apiData) {
+      console.log('Finished API call, and got: ');
+      console.log(fetchCall.wholeResp);
+      actions.fetchAPIreset();
+      setIsFav(!isFav);
+    }
+  });
+
+  useEffect(() => {
+    setIsFav(checkIfFav());
+    console.log('At FavBttn, isFav & checkIfFav & favList');
+    console.log(isFav);
+    console.log(checkIfFav());
+    console.log(currItmID);
+    console.log(favList);
+  }, [currItmID]);
 
   /* Mechanics
   1- if exists in FavList display 'to-unlike' Bttn
@@ -50,22 +69,22 @@ const FavBttn = props => {
       <GetItemsNFavlist />
       {isFav
         ? (
-          <buttton
+          <button
             className="to-unlike"
             type="button"
             onClick={unlike}
           >
             &#9829;
-          </buttton>
+          </button>
         )
         : (
-          <buttton
+          <button
             className="to-like"
             type="button"
             onClick={like}
           >
             &#9825;
-          </buttton>
+          </button>
         )}
     </>
   );
@@ -80,6 +99,7 @@ FavBttn.propTypes = {
   favList: PropTypes.arrayOf(PropTypes.any).isRequired,
   fetchCall: PropTypes.objectOf(PropTypes.any).isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
+  actions: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 const mapStateToProps = ({

@@ -35,6 +35,11 @@ const fetchAPIfailure = error => ({
   payload: error,
 });
 
+const fetchAPIsuccesResp = payload => ({
+  type: 'FETCH_API_SUCCESS_RESP',
+  payload,
+});
+
 function handleErrors(response) {
   if (!response.ok && response.error) { throw Error(JSON.stringify(response)); }
   return response;
@@ -46,6 +51,10 @@ function fetchAPIcall(url, restAct, options) {
 
     setTimeout(() => axios[restAct](url, options)
       .then(handleErrors)
+      .then(rsp => {
+        dispatch(fetchAPIsuccesResp(rsp));
+        return rsp;
+      })
       .then(resp => resp.data)
       .then(jsonResp => dispatch(fetchAPIsuccess(jsonResp)))
       .catch(err => dispatch(fetchAPIfailure(`${err}`))), 1000);
@@ -64,4 +73,5 @@ export {
   fetchAPIsuccess,
   fetchAPIfailure,
   fetchAPIreset,
+  fetchAPIsuccesResp,
 };
