@@ -23,7 +23,7 @@ const Home = props => {
 
   const onNewSubmit = event => {
     event.preventDefault();
-    actions.fetchAPIcall(signupUrl, 'post', { data: { user: { name: username } } });
+    actions.fetchAPIcall(signupUrl, 'post', { data: { payload: { user: { name: username } } } });
   };
 
   const onLogSubmit = event => {
