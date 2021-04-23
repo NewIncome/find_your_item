@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import GetItemsNFavlist from './GetItemsNFavlist';
 import * as MyActions from '../actions';
 
 const FavBttn = props => {
@@ -12,22 +11,48 @@ const FavBttn = props => {
   } = props;
   const [isFav, setIsFav] = useState(false);
 
-  const favAddDelLink = `https://findmyitem-api.herokuapp.com/users/${user.id}/favorites_lists`;
+  const favAddDelLink = `https://findmyitem-api.herokuapp.com/users/${user.id}/favorites_lists/`;
+  const getFavList = 'https://findmyitem-api.herokuapp.com/items';
 
   const checkIfFav = () => (favList[0]
     ? favList.map(itm => itm.item_id).includes(currItmID)
     : false);
 
+  const isAPIclear = obj => !obj.loading && !obj.apiData && !obj.error && !obj.wholeResp;
+
   const like = () => {
     // make API call
-    actions.fetchAPIcall(favAddDelLink, 'post', { item_id: currItmID });
+    // console.log('CLICKED LIKE');
+    // console.log(isAPIclear(fetchCall));
+    if (isAPIclear(fetchCall)) {
+      actions.fetchAPIcall(favAddDelLink, 'post', { item_id: currItmID });
+    } else actions.fetchAPIreset();
+    // USE HERE ASYNC AND AWAIT
+    // to change the isFav, and
+    // to refresh the FavList!!
+
     // wait until API call is done
     // when done, I get the new list-element back ; response 201
     // edit ISFAV... & FAVLIST should be updated (Check!)
   };
 
+  const getFavListId = () => favList.find(i => i.item_id === currItmID).id;
+
   const unlike = () => {
-    actions.fetchAPIcall(favAddDelLink, 'delete', { item_id: currItmID });
+    // console.log('CLICKED UNLIKE');
+    // console.log(isAPIclear(fetchCall));
+    if (isAPIclear(fetchCall)) {
+      // actions.fetchAPIcall(favAddDelLink,
+      //   'delete',
+      //   { item_id: currItmID });
+      fetch(favAddDelLink, {
+        method: 'delete',
+        body: { params: { item_id: currItmID } },
+      }).then(resp => resp.data).then(resp => {
+        // console.log('Finished Fetch');
+        // console.log(resp);
+      }).catch(err => { /* console.log(err) */ });
+    } else actions.fetchAPIreset();
     // wait until API call is done
     // when done, I get nothing ; response 204
     // edit ISFAV... & FAVLIST should be updated (Check!)
@@ -36,18 +61,28 @@ const FavBttn = props => {
   useEffect(() => actions.fetchAPIreset(), []);
 
   useEffect(() => {
+    // console.log('inside continuous useEffect, fetchCall & isFav');
+    // console.log(fetchCall);
+    // console.log(isFav);
     if (fetchCall.wholeResp) {
+      // console.log('Inside WholeResp IF');
+      // console.log(fetchCall.wholeResp);
       if (fetchCall.wholeResp.status === '201') {
+        // console.log('status 201');
         actions.fetchAPIreset();
-        setIsFav(!isFav);
+        actions.fetchAPIcall(getFavList, 'get');
       } else if (fetchCall.wholeResp.status === '204') {
+        // console.log('status 204');
         actions.fetchAPIreset();
-        setIsFav(!isFav);
+        actions.fetchAPIcall(getFavList, 'get');
+      } else if (fetchCall.wholeResp.status === '200') {
+        actions.setFavList(fetchCall.apiData);
+        actions.fetchAPIreset();
       }
     }
   });
 
-  useEffect(() => setIsFav(checkIfFav()), [currItmID]);
+  useEffect(() => setIsFav(checkIfFav()), [currItmID, favList]);
 
   /* Mechanics
   1- if exists in FavList display 'to-unlike' Bttn
@@ -62,7 +97,6 @@ const FavBttn = props => {
 
   return (
     <>
-      <GetItemsNFavlist />
       {orange
         ? (
           <button

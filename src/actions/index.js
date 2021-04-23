@@ -46,10 +46,16 @@ function handleErrors(response) {
 }
 
 function fetchAPIcall(url, restAct, options) {
+  // console.log('IN API CALL');
+  // console.log(url, restAct, options);
   return dispatch => {
     dispatch(fetchAPIbegin(url, options));
 
-    setTimeout(() => axios[restAct](url, options)
+    setTimeout(() => axios({
+      method: restAct,
+      url,
+      params: options,
+    })
       .then(handleErrors)
       .then(rsp => {
         dispatch(fetchAPIsuccesResp(rsp));
@@ -57,7 +63,7 @@ function fetchAPIcall(url, restAct, options) {
       })
       .then(resp => resp.data)
       .then(jsonResp => dispatch(fetchAPIsuccess(jsonResp)))
-      .catch(err => dispatch(fetchAPIfailure(`${err}`))), 1000);
+      .catch(err => dispatch(fetchAPIfailure(`${err}`))), 10);
   };
 }
 
