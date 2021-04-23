@@ -31,7 +31,7 @@ const Home = props => {
     actions.fetchAPIcall(loginUrl, 'post', { name: username });
   };
 
-  const onClick = () => setLoginFlag(false);
+  const onClick = () => setLoginFlag(!loginFlag);
 
   useEffect(() => {
     if (fetchCall.apiData) actions.setUserInfo(fetchCall.apiData);
@@ -57,7 +57,7 @@ const Home = props => {
               <form className="home-form">
                 <input
                   className="home-input"
-                  placeholder="Please input your User Name"
+                  placeholder={loginFlag ? 'Please input your User Name' : 'What name do you prefer?'}
                   value={username}
                   onChange={onInput}
                 />
@@ -74,16 +74,13 @@ const Home = props => {
                     </button>
                   )}
               </form>
-              {loginFlag
-                ? (
-                  <button
-                    className="signup"
-                    type="button"
-                    onClick={onClick}
-                  >
-                    Not signed up?
-                  </button>
-                ) : ''}
+              <button
+                className="signup"
+                type="button"
+                onClick={onClick}
+              >
+                {loginFlag ? 'Not signed up?' : 'back to log-in?'}
+              </button>
             </>
           )}
         <br />
