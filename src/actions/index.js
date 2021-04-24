@@ -46,16 +46,12 @@ function handleErrors(response) {
 }
 
 function fetchAPIcall(url, restAct, options) {
-  // console.log('IN API CALL');
-  // console.log(url, restAct, options);
+  console.log('IN API CALL');
+  console.log(url, restAct, options);
   return dispatch => {
     dispatch(fetchAPIbegin(url, options));
 
-    setTimeout(() => axios({
-      method: restAct,
-      url,
-      params: options,
-    })
+    setTimeout(() => axios[restAct](url, options)
       .then(handleErrors)
       .then(rsp => {
         dispatch(fetchAPIsuccesResp(rsp));
