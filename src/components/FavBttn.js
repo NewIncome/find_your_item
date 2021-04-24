@@ -7,93 +7,63 @@ import * as MyActions from '../actions';
 
 const FavBttn = props => {
   const {
-    currItmID, favList, fetchCall, actions, user, orange,
+    currItmID, favList, fetchCall, actions, user, orange, rRender,
   } = props;
   const [isFav, setIsFav] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   const favAddDelLink = `https://findmyitem-api.herokuapp.com/users/${user.id}/favorites_lists/`;
-  const getFavList = 'https://findmyitem-api.herokuapp.com/items';
 
   const checkIfFav = () => (favList[0]
     ? favList.map(itm => itm.item_id).includes(currItmID)
     : false);
 
+  const getFavListId = () => favList.find(i => i.item_id === currItmID).id;
+
   const isAPIclear = obj => !obj.loading && !obj.apiData && !obj.error && !obj.wholeResp;
 
   const like = () => {
-    // make API call
-    // console.log('CLICKED LIKE');
-    // console.log(isAPIclear(fetchCall));
+    console.log('CLICKED LIKE');
     if (isAPIclear(fetchCall)) {
       actions.fetchAPIcall(favAddDelLink, 'post', { item_id: currItmID });
+      setClicked(true);
     } else actions.fetchAPIreset();
-    // USE HERE ASYNC AND AWAIT
-    // to change the isFav, and
-    // to refresh the FavList!!
-
-    // wait until API call is done
-    // when done, I get the new list-element back ; response 201
-    // edit ISFAV... & FAVLIST should be updated (Check!)
   };
 
-  const getFavListId = () => favList.find(i => i.item_id === currItmID).id;
-
   const unlike = () => {
-    // console.log('CLICKED UNLIKE');
-    // console.log(isAPIclear(fetchCall));
+    console.log('CLICKED UNLIKE');
     if (isAPIclear(fetchCall)) {
-      // actions.fetchAPIcall(favAddDelLink,
-      //   'delete',
-      //   { item_id: currItmID });
-      fetch(favAddDelLink, {
-        method: 'delete',
-        body: { params: { item_id: currItmID } },
-      }).then(resp => resp.data).then(resp => {
-        // console.log('Finished Fetch');
-        // console.log(resp);
-      }).catch(err => { /* console.log(err) */ });
+      actions.fetchAPIcall(favAddDelLink.concat(`${getFavListId()}`),
+        'delete',
+        { data: { favorites_list: { item_id: currItmID } } });
+      setClicked(true);
     } else actions.fetchAPIreset();
-    // wait until API call is done
-    // when done, I get nothing ; response 204
-    // edit ISFAV... & FAVLIST should be updated (Check!)
   };
 
   useEffect(() => actions.fetchAPIreset(), []);
 
   useEffect(() => {
-    // console.log('inside continuous useEffect, fetchCall & isFav');
-    // console.log(fetchCall);
-    // console.log(isFav);
     if (fetchCall.wholeResp) {
-      // console.log('Inside WholeResp IF');
-      // console.log(fetchCall.wholeResp);
-      if (fetchCall.wholeResp.status === '201') {
-        // console.log('status 201');
-        actions.fetchAPIreset();
-        actions.fetchAPIcall(getFavList, 'get');
-      } else if (fetchCall.wholeResp.status === '204') {
-        // console.log('status 204');
-        actions.fetchAPIreset();
-        actions.fetchAPIcall(getFavList, 'get');
-      } else if (fetchCall.wholeResp.status === '200') {
-        actions.setFavList(fetchCall.apiData);
+      console.log('Inside WholeResp IF');
+      console.log(fetchCall);
+      if (fetchCall.wholeResp.status === 201 || fetchCall.wholeResp.status === 204) {
+        console.log('status 201 or 204');
         actions.fetchAPIreset();
       }
+      if (fetchCall.wholeResp.status === 200 && clicked) {
+        console.log('status 200');
+        actions.setFavList(fetchCall.wholeResp.data);
+        actions.fetchAPIreset();
+        setClicked(false);
+      }
     }
-  });
+    if (clicked && isAPIclear(fetchCall)) {
+      console.log('inside IF to update FavList');
+      actions.fetchAPIcall(favAddDelLink, 'get');
+    }
+  }, [fetchCall]);
 
   useEffect(() => setIsFav(checkIfFav()), [currItmID, favList]);
-
-  /* Mechanics
-  1- if exists in FavList display 'to-unlike' Bttn
-  2- else display 'to-like'
-  3- on 'like' Click => Make FavList ADD apiCall
-  4- when Done, update favList
-                edit ISFAV
-  5- on 'unlike' Click => MAke FavList DELETE apiCall
-  6- when Done, edit ISFAV
-  7- render all on ISFAV change
-  */
 
   return (
     <>
@@ -138,6 +108,7 @@ const FavBttn = props => {
 FavBttn.defaultProps = {
   currItmID: 0,
   orange: false,
+  rRender: () => {},
 };
 
 FavBttn.propTypes = {
@@ -147,6 +118,7 @@ FavBttn.propTypes = {
   user: PropTypes.objectOf(PropTypes.any).isRequired,
   actions: PropTypes.objectOf(PropTypes.any).isRequired,
   orange: PropTypes.bool,
+  rRender: PropTypes.func,
 };
 
 const mapStateToProps = ({
