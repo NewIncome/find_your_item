@@ -23,7 +23,6 @@ const FavBttn = props => {
   const isAPIclear = obj => !obj.loading && !obj.apiData && !obj.error && !obj.wholeResp;
 
   const like = () => {
-    console.log('CLICKED LIKE');
     if (isAPIclear(fetchCall)) {
       actions.fetchAPIcall(favAddDelLink, 'post', { item_id: currItmID });
       setClicked(true);
@@ -31,7 +30,6 @@ const FavBttn = props => {
   };
 
   const unlike = () => {
-    console.log('CLICKED UNLIKE');
     if (isAPIclear(fetchCall)) {
       actions.fetchAPIcall(favAddDelLink.concat(`${getFavListId()}`),
         'delete',
@@ -44,21 +42,16 @@ const FavBttn = props => {
 
   useEffect(() => {
     if (fetchCall.wholeResp) {
-      console.log('Inside WholeResp IF');
-      console.log(fetchCall);
       if (fetchCall.wholeResp.status === 201 || fetchCall.wholeResp.status === 204) {
-        console.log('status 201 or 204');
         actions.fetchAPIreset();
       }
       if (fetchCall.wholeResp.status === 200 && clicked) {
-        console.log('status 200');
         actions.setFavList(fetchCall.wholeResp.data);
         actions.fetchAPIreset();
         setClicked(false);
       }
     }
     if (clicked && isAPIclear(fetchCall)) {
-      console.log('inside IF to update FavList');
       actions.fetchAPIcall(favAddDelLink, 'get');
     }
   }, [fetchCall]);
