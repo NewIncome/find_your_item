@@ -13,6 +13,7 @@ const Navbar = props => {
     rbc,
     fvlReady,
     itmId,
+    emptyFvl,
   } = props;
   const location = useLocation();
 
@@ -21,7 +22,9 @@ const Navbar = props => {
       case '/items':
         return (<FavBttn currItmID={itmId} />);
       case '/fav_list':
-        return (<FavBttn currItmID={itmId} />);
+        return (emptyFvl
+          ? <div className="lk no-fvl">&#9676;</div>
+          : <FavBttn currItmID={itmId} />);
       case '/user':
         return (fvlReady
           ? <Link to="/fav_list" className="like a">Fav&apos;s List</Link>
@@ -72,6 +75,7 @@ Navbar.defaultProps = {
   rbc: () => {},
   fvlReady: false,
   itmId: 0,
+  emptyFvl: false,
 };
 
 Navbar.propTypes = {
@@ -83,6 +87,7 @@ Navbar.propTypes = {
   rbc: PropTypes.func,
   fvlReady: PropTypes.bool,
   itmId: PropTypes.number,
+  emptyFvl: PropTypes.bool,
 };
 
 export default Navbar;

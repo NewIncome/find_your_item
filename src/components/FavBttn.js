@@ -56,7 +56,7 @@ const FavBttn = props => {
     }
   }, [fetchCall]);
 
-  useEffect(() => setIsFav(checkIfFav()), [currItmID, favList]);
+  useEffect(() => setIsFav(checkIfFav()), [currItmID, favList, fetchCall]);
 
   return (
     <>
@@ -76,7 +76,7 @@ const FavBttn = props => {
             {isFav
               ? (
                 <button
-                  className="to-unlike"
+                  className="to-unlike lk"
                   type="button"
                   onClick={unlike}
                 >
@@ -85,7 +85,7 @@ const FavBttn = props => {
               )
               : (
                 <button
-                  className="to-like"
+                  className="to-like lk"
                   type="button"
                   onClick={like}
                 >

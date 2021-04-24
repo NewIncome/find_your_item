@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Navbar from '../containers/Navbar';
-import Loader from '../components/Loader';
 import ListFilter from '../containers/ListFilter';
 
 const FavList = props => {
   const {
-    items, fetchCall, favList,
+    items, favList,
   } = props;
   const [curItemID, setCurItemID] = useState();
 
@@ -17,17 +16,19 @@ const FavList = props => {
 
   return (
     <>
-      <Navbar backDir="/user" title="Favorites List" itmId={curItemID} />
+      <Navbar
+        backDir="/user"
+        title="Favorites
+        List"
+        itmId={curItemID}
+        emptyFvl={!favList[0]}
+      />
       <section className="section" id="FavList">
-        {fetchCall.loading
-          ? <Loader />
-          : (
-            <ListFilter
-              items={items}
-              favList={favList[0] ? favList.map(favLi => favLi.item_id) : []}
-              getCurItmID={getCurItmID}
-            />
-          )}
+        <ListFilter
+          items={items}
+          favList={favList[0] ? favList.map(favLi => favLi.item_id) : []}
+          getCurItmID={getCurItmID}
+        />
       </section>
     </>
   );
@@ -36,13 +37,12 @@ const FavList = props => {
 FavList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.any).isRequired,
   favList: PropTypes.arrayOf(PropTypes.any).isRequired,
-  fetchCall: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 const mapStateToProps = ({
-  favList, items, fetchCall,
+  favList, items,
 }) => ({
-  favList, items, fetchCall,
+  favList, items,
 });
 
 export default connect(mapStateToProps)(FavList);

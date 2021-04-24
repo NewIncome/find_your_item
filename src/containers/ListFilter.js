@@ -18,8 +18,10 @@ const ListFilter = props => {
             <br />
             If you wish, please go ahead and check out
             <br />
-            the list of Items and add some
-            <Link to="/items">goto Items</Link>
+            the list of Items and add some.
+            <br />
+            <br />
+            <Link to="/items"><b>go to Items</b></Link>
           </div>
         )}
     </div>

@@ -47,3 +47,27 @@ a {
   text-decoration: none;
   width: 100%;
 }
+
+.lk {
+  background: #f9e7cd7a;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 7px 10px;
+  font-size: 1.2em;
+  width: 39px;
+  height: 39px;
+}
+
+.no-fvl {
+  color: #777;
+  font-size: 1.25em;
+  padding-top: 6px;
+}
+
+.announce {
+  line-height: 30px;
+  margin: 100px auto 0;
+  text-justify: inter-word;
+  width: 70%;
+}
