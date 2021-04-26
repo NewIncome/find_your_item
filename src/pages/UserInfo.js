@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -13,13 +13,11 @@ const UserInfo = props => {
   const {
     actions, items, fetchCall, user, favList,
   } = props;
-  const [apiFlag, setApiFlag] = useState({ itm: false, fvl: false });
   const { history } = useHistory();
 
   useEffect(() => {
     if (favList[0]) {
       actions.fetchAPIreset();
-      setApiFlag({ itm: true, fvl: true });
     }
   }, [favList]);
 
@@ -35,7 +33,7 @@ const UserInfo = props => {
   return (
     <>
       <GetItemsNFavlist />
-      <Navbar icon="☜" onClick={onClick} rightLnk={rightLnk} fvlReady={apiFlag.fvl} title="User Info" />
+      <Navbar icon="☜" onClick={onClick} rightLnk={rightLnk} fvlReady={!fetchCall.loading} title="User Info" />
       <section className="userInfo-section" id="User">
         <h2 className="user-h h">
           {user.name.toUpperCase().concat("'s ")}
