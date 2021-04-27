@@ -1,0 +1,33 @@
+.image-frame {
+  position: relative;
+  overflow: hidden;
+
+  .img-info {
+    position: absolute;
+    bottom: 0;
+    color: #eee;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 20px;
+    font-size: 1.2em;
+
+    .dtl-right {
+      font-weight: bold;
+    }
+  }
+}
+
+.image-desc {
+  background: #fff;
+  height: 136px;
+  margin-top: -4px;
+  padding: 15px 40px;
+
+  & p { text-align: start; }
+
+  .desc-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+}

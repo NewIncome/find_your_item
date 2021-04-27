@@ -1,76 +1,79 @@
-# Getting Started with Create React App
+# Find Your Item
+This project is a React web app made to view available items and add them or remove them from your favorites list. It connects to an Rails API to get the User info as well as the Items and the Favorites List for each User.
+Built according to [Microverse's requirements](https://www.notion.so/Final-Capstone-Project-Find-Your-House-9a424802e7dc48eb8ef40e2ac09397d1).
+All the information is saved in the BackEnd API.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Front-End Links
+- [GitHub Repo](https://github.com/NewIncome/find_your_item)
+- [:globe_with_meridians::computer: Netlify LIVElink](https://find-my-item.netlify.app/)
 
-## Links
-[GitHub Repo](https://github.com/NewIncome/find_your_item)
+## Back-End / API Links
+- [API GitHub Repo](https://github.com/NewIncome/find-my-item-api)
+- [API Live Version](https://findmyitem-api.herokuapp.com)
 
-[:globe_with_meridians::computer: Heroku Livelink](https://find-your-item.herokuapp.com/ )
+## Built With 
 
+- REACT
+- REDUX
+- JavaScript (ES6)
+- NPM
+- HTML5
+- CSS
 
-## Available Scripts
+<div style="text-align: center;">
+<img src="src/assets/F-P_01.png" alt="image" style="zoom: 33%;" />
+<img src="src/assets/F-P_02.png" alt="image" style="zoom: 33%;" />
+<img src="src/assets/F-P_05.png" alt="image" style="zoom: 33%;" />
+<img src="src/assets/F-P_03.png" alt="image" style="zoom: 33%;" />
+<img src="src/assets/F-P_04.png" alt="image" style="zoom: 33%;" />
+</div>
 
-In the project directory, you can run:
+## Getting Started
 
-### `yarn start`
+In order to start with this project you need the next:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Get a copy of this project [this repository :blue_book:](https://github.com/NewIncome/find_your_item/tree/feature/app-w-nodeV12)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Once you have cloned this project
+1. Go to project folder
+2. run `npm install` or `yarn install`
+3. run `npm start`
 
-### `yarn test`
+### Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Enter your **Username** for personalized usage
+- Click on the **Item's List** button to see a list of the available items
+- You can add items to your Favorites list by clicking the Item and then the **Add to Favorites** button or by pressing the uncolored **heart button** in the Items display
+- And by going back to the **User page** you can go to the button **FAVLIST** in the Navbar to view your list of Favorite Items. And also remove them from the list with the **heart button**
 
-### `yarn build`
+## Improvements
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Features pending to add to this app:
+- add items
+- edit items
+- remove items
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Acknowledgements
+Thanks and inspiration for the Loader from
++ [Andreas Storm](https://codepen.io/avstorm), (tea cup)
++ [Dave McCarthy](https://codepen.io/AsLittleDesign), (loading text)
++ Design idea by [Alexey Savitskiy on Behance](https://www.behance.net/alexey_savitskiy)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Author
+👤 **Jose Alfredo Cardenas**
 
-### `yarn eject`
+- Github: [@Jose Alfredo](https://github.com/NewIncome)
+- Twitter: [@J_A_fredo](https://twitter.com/J_A_fredo)
+- LinkedIn: [Jose Alfredo Cardenas](https://www.linkedin.com/in/j-alfredo-c/)  
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🤝 Contributing
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Contributions, issues, and feature requests are welcome!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Show your support
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+If you got until here, show your love hitting the ⭐️ button, greatly appreciated.
 
-## Learn More
+## 📝 License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT

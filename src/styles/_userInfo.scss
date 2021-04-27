@@ -1,0 +1,25 @@
+.userInfo-section {
+  padding: 8% 30px 30px;
+
+  .user-h.h {
+    padding-bottom: 40px;
+  }
+
+  .user-ul {
+    padding: 10px 70px;
+
+    .user-li {
+      font-size: 1.2em;
+      list-style: none;
+      padding: 12px;
+      text-align: start;
+      text-shadow: 1px 1px 1px #666;
+
+      .user-detail {
+        float: right;
+        font-size: 0.9em;
+        text-shadow: none;
+      }
+    }
+  }
+}

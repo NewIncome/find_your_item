@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Item component is displayed correctly 1`] = `
+<div
+  className="Items-info"
+>
+  <div
+    className="image-frame"
+  >
+    <img
+      alt="item name"
+      className="Items-image"
+    />
+    <div
+      className="img-info"
+    >
+      <div
+        className="dtl-left  dtls"
+      >
+        <p
+          className="stars"
+        >
+          ★★★★☆
+        </p>
+        <p
+          className="itm-name"
+        >
+          2021-12-02 
+        </p>
+      </div>
+      <div
+        className="dtl-right dtls"
+      >
+        <p
+          className="d-r-u"
+        >
+          $
+          1000
+        </p>
+        <p
+          className="d-r-d"
+        >
+          Price
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    className="image-desc"
+  >
+    <p
+      className="desc-title"
+    >
+      About this item
+    </p>
+    <p
+      className="desc-description"
+    >
+      item description
+    </p>
+  </div>
+</div>
+`;

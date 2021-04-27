@@ -1,0 +1,73 @@
+@import 'styles/loader', 'styles/navbar', 'styles/home';
+@import 'styles/userInfo', 'styles/items', 'styles/itemInfo';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.h { font-family: Verdana, Geneva, sans-serif; }
+.p { font-family: Cordia-New, sans-serif; }
+
+a {
+  color: #222;
+  text-decoration: none;
+}
+
+.App {
+  background: linear-gradient(#fffa, #fffa), url(https://picsum.photos/id/431/600/800) center no-repeat;
+  border: 1px solid #ccc;
+  margin: auto;
+  max-width: 600px;
+  max-height: 800px;
+  min-height: 85vh;
+  min-width: 400px;
+  position: relative;
+}
+
+.error-message {
+  color: #911;
+  float: left;
+  margin: 20px 0 0 18%;
+}
+
+.btm-link {
+  background-color: #fb5a05;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 38px;
+  text-decoration: none;
+  width: 100%;
+}
+
+.lk {
+  background: #f9e7cd7a;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 7px 10px;
+  font-size: 1.2em;
+  width: 39px;
+  height: 39px;
+}
+
+.no-fvl {
+  color: #777;
+  font-size: 1.25em;
+  padding-top: 6px;
+}
+
+.announce {
+  line-height: 30px;
+  margin: 100px auto 0;
+  text-justify: inter-word;
+  width: 70%;
+}

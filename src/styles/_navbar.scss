@@ -1,0 +1,57 @@
+.Navbar {
+  background: linear-gradient(#fff, #fff);
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+
+  .logo {
+    font-size: 2em;
+    & a { color: #666; }
+    &:hover { text-shadow: 0 0 1px #000; }
+
+    .logout {
+      display: block;
+      font-size: 0.3em !important;
+      margin-top: -8px;
+    }
+  }
+
+  .title {
+    align-self: center;
+    font-size: 1.4em;
+    margin-left: -5%;
+  }
+
+  .errorBackButton {
+    background: none;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
+  .like {
+    align-self: center;
+    font-family: Helvetica, cursive;
+    font-size: 0.85em;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 13px;
+    text-shadow: 1px 1px 1px #666;
+    width: 50px;
+  }
+
+  .edit {
+    background: transparent;
+    border: none;
+    color: #753622;
+    cursor: pointer;
+    font-size: 1.3em;
+    font-weight: bold;
+    transform: rotate(90deg);
+
+    &:hover {
+      font-size: 1.4em;
+      text-shadow: 1px 1px 3px #9f4a2ed5;
+    }
+  }
+}
