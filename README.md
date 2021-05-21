@@ -1,7 +1,16 @@
 # Find Your Item
-This project is a React web app made to view available items and add them or remove them from your favorites list. It connects to an Rails API to get the User info as well as the Items and the Favorites List for each User.
+This project is a React web app made to view available items and add them or remove them from your favorites list. It connects to a personal API coded with Rail to get the User info as well as the Items and the Favorites List for each User.
 Built according to [Microverse's requirements](https://www.notion.so/Final-Capstone-Project-Find-Your-House-9a424802e7dc48eb8ef40e2ac09397d1).
 All the information is saved in the BackEnd API.
+
+<div style="text-align: center;">
+<img src="src/assets/F-P_01.png" alt="image" style="zoom: 33%;" />
+<img src="src/assets/F-P_02.png" alt="image" style="zoom: 33%;" />
+<img src="src/assets/F-P_05.png" alt="image" style="zoom: 33%;" />
+<img src="src/assets/F-P_03.png" alt="image" style="zoom: 33%;" />
+<img src="src/assets/F-P_04.png" alt="image" style="zoom: 33%;" />
+</div>
+
 
 ## Front-End Links
 - [GitHub Repo](https://github.com/NewIncome/find_your_item)
@@ -19,14 +28,6 @@ All the information is saved in the BackEnd API.
 - NPM
 - HTML5
 - CSS
-
-<div style="text-align: center;">
-<img src="src/assets/F-P_01.png" alt="image" style="zoom: 33%;" />
-<img src="src/assets/F-P_02.png" alt="image" style="zoom: 33%;" />
-<img src="src/assets/F-P_05.png" alt="image" style="zoom: 33%;" />
-<img src="src/assets/F-P_03.png" alt="image" style="zoom: 33%;" />
-<img src="src/assets/F-P_04.png" alt="image" style="zoom: 33%;" />
-</div>
 
 ## Getting Started
 
